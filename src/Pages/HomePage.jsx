@@ -1,10 +1,11 @@
 
 import {Link} from "react-router-dom"
 
+import StudyImage_1 from "../Assets/Images/StudyImage_1.jpg"
 import HomeLayout from "../Layouts/HomeLayout.jsx";
 function HomePage(){
  return(
- <HomeLayout>
+ <HomeLayout> 
    <div className="pt-10 text-white flex items-center justify-center gap-10 mx-16 h-[90vh]">
   
    <div className="w-1/2 space-y-6">
@@ -34,8 +35,12 @@ function HomePage(){
     </div>
    </div>
 
-   <div className="w-1/2 flex items-center justify-center">
-    <img src="https://images.pexels.com/photos/442574/pexels-photo-442574.jpeg?auto=compress&cs=tinysrgb&w=600" alt="imge" />
+   <div className="w-1/2 flex items-center justify-center"
+    style={{
+      filter: "drop-shadow(0px 10px 10px rgb(0,0,0))"
+  }}
+   >
+    <img src={StudyImage_1} alt="imge" />
    </div>
 
    </div>

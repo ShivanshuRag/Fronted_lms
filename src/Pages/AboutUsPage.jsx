@@ -1,10 +1,13 @@
 
- import CarouselSlide from "../Components/CarouselSlide.jsx";
+
+ import StudyImage_3 from "../Assets/Images/StudyImage_3.jpg"
+import CarouselSlide from "../Components/CarouselSlide.jsx";
  import {celebrities} from "../Contants/celebrityData.js";
  import HomeLayout from "../Layouts/HomeLayout.jsx";
-
 function AboutUs(){
   
+  
+    
   return(
   <HomeLayout>
     <div className="pl-20 pt-20 flex flex-col text-white">
@@ -14,45 +17,42 @@ function AboutUs(){
            Affordable and quality education
            </h1>
              <p className="text-xl text-gray-200">
-             Our goal is to provide the afoordable and quality education to the world. 
+             Our goal is to provide the affordable and quality education to the world. 
             We are providing the platform for the aspiring teachers and students to share
             their skills, creativity and knowledge to each other to empower and contribute
             in the growth and wellness of mankind.  
              </p>
          </section>
-
+  
          <div className="w-1/2">
-                        <img
-                            id="test1"
-                            style={{
-                                filter: "drop-shadow(0px 10px 10px rgb(0,0,0));"
-                            }}
-                            alt="about main image"
-                            className="drop-shadow-2xl"
-                            src="https://images.pexels.com/photos/3952095/pexels-photo-3952095.jpeg?auto=compress&cs=tinysrgb&w=600 "
-                        />
-                    </div>
+          <img
+              id="test1"
+              style={{
+                  filter: "drop-shadow(0px 10px 10px rgb(0,0,0))"
+              }}
+              alt="about main image"
+              className="drop-shadow-2xl"
+              src= {StudyImage_3}
+          />
+          
+      </div>
+    
        </div>
        <div className="carousel w-1/2 m-auto my-16">
-            {celebrities && celebrities.map(celebrity => (<CarouselSlide 
-                    {...celebrity} 
-                    key={celebrity.slideNumber} 
-                    totalSlides={celebrities.length}
-                    
-                />))}
-                    
-                </div>
-
-
+        {celebrities && celebrities.map(celebrity => (<CarouselSlide 
+                {...celebrity} 
+                key={celebrity.slideNumber} 
+                totalSlides={celebrities.length}
+                
+            />))}
+                
+            </div>
 
     </div>
-
 
   </HomeLayout>
 
   )
-
-   
 
 } 
 export default AboutUs;
