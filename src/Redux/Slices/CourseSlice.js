@@ -49,7 +49,29 @@ import { createAsyncThunk , createSlice } from "@reduxjs/toolkit";
      }
 
 
-  })
+  });
+
+  export const deleteCourse = createAsyncThunk("course/delete" , async (id)=>{
+   try {
+
+    const response = axiosInstance.delete(`courses/${id}`);
+     toast.promise(response , {
+      loading : "deleting course...",
+      success : " course deleted successfully",
+      error : " failed to delete course"
+
+     })
+
+     return ( await response).data ;
+    
+    
+   } catch (error) {
+    toast.error(error?.response?.data?.message);
+    
+   }
+
+
+  });
 
 
 
