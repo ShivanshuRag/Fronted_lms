@@ -1,5 +1,4 @@
 
-
 import './App.css'
 
 import { Route,Routes  } from 'react-router-dom'
@@ -12,11 +11,10 @@ import Signup from './Pages/Signup.jsx'
 
 function App() {
  
-
   return (
    <>
    <h1
-   className="text-3xl font-bold underline"> Hello  I am Shiavanshu SinghRag</h1>
+   className="text-3xl font-bold underline"> Hello  I am Shivanshu SinghRag</h1>
     <Routes>
     <Route path="/" element={<HomePage />} ></Route>
     <Route path="/about" element={<AboutUs/>} ></Route>
