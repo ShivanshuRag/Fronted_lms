@@ -76,7 +76,7 @@ import { createAsyncThunk , createSlice } from "@reduxjs/toolkit";
 
 
  const courseSlice = createSlice({
-    name : "courses",
+    name : 'courses',
     initialState,
     reducers: {},
     extraReducers: (builder)=>{

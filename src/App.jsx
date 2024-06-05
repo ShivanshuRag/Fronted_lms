@@ -12,10 +12,10 @@ import Denied from './Pages/Denied.jsx'
 import HomePage from './Pages/HomePage.jsx'
 import Login from './Pages/Login.jsx'
 import NotFound from './Pages/NotFound.jsx'
-import Signup from './Pages/Signup.jsx'
+import Signup from './Pages/Signup.jsx' 
 
-function App() {
- 
+function App() { 
+  
   return (
    <>
    <h1

@@ -34,6 +34,7 @@ function Login(){
   }
    
   const response = await dispatch(login(loginData));
+  
   if(response?.payload?.success)
 
     naviagte("/")
@@ -42,6 +43,8 @@ function Login(){
         email: "",
         password: "",
     });
+
+    
   
  }
 
