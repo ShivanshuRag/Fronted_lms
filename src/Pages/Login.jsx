@@ -44,8 +44,6 @@ function Login(){
         password: "",
     });
 
-    
-  
  }
 
 return(

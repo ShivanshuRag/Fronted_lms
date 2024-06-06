@@ -32,7 +32,7 @@ function CreateCourse(){
        if(uploadedImage){
         const fileReader = new FileReader();
          fileReader.readAsDataURL(uploadedImage)
-         fileReader.addEventListener("upload" , function(){
+         fileReader.addEventListener("load" , function(){
             setUserInput({
                 ...userInput,
                 previewImage : this.result,
