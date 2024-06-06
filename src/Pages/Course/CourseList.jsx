@@ -1,6 +1,7 @@
 
 import { useEffect } from "react";
-import { useDispatch,useSelector  } from "react-redux";
+import { useDispatch  } from "react-redux";
+import { useSelector } from "react-redux";
 
 import CourseCard from "../../Components/CourseCard.jsx";
 import HomeLayout from "../../Layouts/HomeLayout.jsx";
@@ -10,10 +11,10 @@ function CourseList(){
   
     const dispatch = useDispatch();
 
-    const courseData = useSelector((state)=> state.course);
+    let {courseData} = useSelector((state)=> state.course);
     
     async function loadCourses(){
-        await dispatch(getAllCourses())
+        await dispatch(getAllCourses());
     }
 
     useEffect(()=>{
@@ -45,7 +46,7 @@ function CourseList(){
            
         </HomeLayout>
        
-       )
+       );
 }
 
 
