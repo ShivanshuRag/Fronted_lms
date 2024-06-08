@@ -13,6 +13,8 @@ import Denied from './Pages/Denied.jsx'
 import HomePage from './Pages/HomePage.jsx'
 import Login from './Pages/Login.jsx'
 import NotFound from './Pages/NotFound.jsx'
+import Checkout from './Pages/Payment/Checkout.jsx'
+import CheckoutSuccess from './Pages/Payment/CheckoutSuccess.jsx'
 import Signup from './Pages/Signup.jsx' 
 import EditProfile from './Pages/User/EditProfile.jsx'
 import Profile from './Pages/User/Profile.jsx'
@@ -41,6 +43,8 @@ function App() {
     <Route element={<RequireAuth allowedRoles={["Admin" , "User"]} />}>
      <Route path="/user/profile" element={<Profile/>}></Route>
       <Route path="/user/editprofile" element={<EditProfile/>}/>
+      <Route path="/checkout" element={<Checkout/>}/> 
+      <Route path="/checkout/success" element={<CheckoutSuccess/>}/>
     </Route>
    
     <Route path="*" element={<NotFound/>}></Route>
