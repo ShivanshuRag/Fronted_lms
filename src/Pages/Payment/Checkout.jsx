@@ -28,7 +28,7 @@ function Checkout(){
             return
         }
 
-        const option = {
+        const options = {
             key : razorpaykey,
             subscription_id : subscription_id,
             name : "coursify Pvt. Ltd.",
@@ -45,15 +45,16 @@ function Checkout(){
                  
                 toast.success("Payment successfull")
 
-                const res = dispatch(verifyUserPayment(paymentDetails));
+                const res =  await dispatch(verifyUserPayment(paymentDetails));
+                
 
-                res?.payload?.success ? navigate("/checkout/success") : navigate("/checkout/fail")
+                res?.payload?.success ? navigate("/checkout/success") : navigate("/checkout/fail");
 
             }
             
         }
 
-        const paymentObject = new window.Razorpay(option);
+        const paymentObject = new window.Razorpay(options);
          paymentObject.open();
 
 

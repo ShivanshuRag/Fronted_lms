@@ -14,7 +14,7 @@ function CheckoutSuccess(){
     useEffect(()=>{
          
         dispatch(getUserData());
-    });
+    },[]);
 
  return(
     <HomeLayout>

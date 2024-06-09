@@ -8,7 +8,7 @@ const initialState ={
     subscription_id:"",
     isPaymentVerified: false,
     allPayments: {},
-    finalMonth:{},
+    finalMonths:{},
     monthlySalesRecord: [],
 }
 
@@ -121,7 +121,7 @@ const razorpaySlice = createSlice({
       .addCase(getPaymentRecord.fulfilled , (state , action)=>{
         
         state.allPayments = action?.payload?.allPayments;
-        state.finalMonth = action?.payload?.finalMonth;
+        state.finalMonths = action?.payload?.finalMonth;
         state.monthlySalesRecord = action?.payload?.monthlySalesRecord;
       })
 
