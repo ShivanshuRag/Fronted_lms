@@ -70,9 +70,6 @@ export const deleteCourseLecture = createAsyncThunk("/course/lecture/delete" , a
 })
 
 
-
-
-
 const lectureSlice = createSlice({
     name: 'lecture',
     initialState,

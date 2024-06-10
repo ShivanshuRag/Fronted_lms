@@ -9,6 +9,7 @@ import Contact from './Pages/Contact.jsx'
 import CourseDescription from './Pages/Course/CourseDescription.jsx'
 import CourseList from './Pages/Course/CourseList.jsx'
 import CreateCourse from './Pages/Course/CreateCourse.jsx'
+import Displaylectures from './Pages/Dashboard/Displaylectures.jsx'
 import Denied from './Pages/Denied.jsx'
 import HomePage from './Pages/HomePage.jsx'
 import Login from './Pages/Login.jsx'
@@ -39,6 +40,7 @@ function App() {
 
     <Route element={<RequireAuth allowedRoles={["Admin"]}/>}>
     <Route path="/course/create" element={<CreateCourse/>}></Route>
+    {/* <Route path="/course/addlecture" element={}/> */}
     </Route>
 
     <Route element={<RequireAuth allowedRoles={["Admin" , "User"]} />}>
@@ -47,6 +49,7 @@ function App() {
       <Route path="/checkout" element={<Checkout/>}/> 
       <Route path="/checkout/success" element={<CheckoutSuccess/>}/>
       <Route path="/checkout/fail" element={<CheckoutFailure/>}/>
+      <Route path="/course/displaylectures" element={<Displaylectures/>}/>
     </Route>
    
     <Route path="*" element={<NotFound/>}></Route>
