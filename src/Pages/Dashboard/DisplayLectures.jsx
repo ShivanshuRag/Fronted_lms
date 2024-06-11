@@ -44,9 +44,9 @@ function Displaylectures(){
                         className="object-fill rounded-tl-lg rounded-tr-lg w-full"   
                         controls
                         disablePictureInPicture
-                    
+                        
                         controlsList="nodownload"
-
+                        
                     >
                     </video>    
                     <div>

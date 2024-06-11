@@ -27,7 +27,7 @@ function CourseDescription(){
                     <span className="text-yellow-500 font-bold">
                     Total lectures : {" "}
                     </span>
-                    {state?.numberOfLectures}
+                    {state?.numberOfLecture}
                   </p>
 
                   <p className="font-semibold">
