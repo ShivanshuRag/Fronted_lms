@@ -26,7 +26,7 @@ function HomeLayout({ children }) {
         element[0].checked = false;
 
         const drawerSide = document.getElementsByClassName("drawer-side");
-        drawerSide[0].style.width = 'auto';
+        drawerSide[0].style.width = '0';
     }
 
     async function handleLogout(e) {

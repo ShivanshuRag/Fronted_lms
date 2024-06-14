@@ -2,11 +2,11 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
  import {toast} from "react-hot-toast"
 
  import axiosInstance from "../../Helpers/axiosIntances.js";
-
+ 
 
 const initialState ={
     allUserCount : 0,
-    subscribedUser : 0
+    subscribedUser :0,
 }
  
 export const getStatsData = createAsyncThunk("/stats/get" , async ()=>{
@@ -29,12 +29,13 @@ export const getStatsData = createAsyncThunk("/stats/get" , async ()=>{
 })
 
 const StaticsSlice = createSlice({
-    name : 'state',
+    name : 'static',
     initialState,
     reducers: {},
     extraReducers: (builder)=>{
      
         builder.addCase(getStatsData.fulfilled , (state , action)=>{
+               console.log(action);
 
             state.allUserCount = action?.payload?.allUserCount;
             state.subscribedUser = action?.payload?.subscribedUser;

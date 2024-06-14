@@ -93,14 +93,14 @@ function AdminDashboard() {
                             <div className="flex items-center justify-between p-5 gap-5 rounded-md shadow-md">
                                 <div className="flex flex-col items-center">
                                     <p className="font-semibold">Registered Users</p>
-                                    <h3 className="text-4xl font-bold">{allUserCount}</h3>
+                                    <h3 className="text-4xl font-bold">{(!allUserCount == 0) ? allUserCount : "No"}</h3>
                                 </div>
                                 <FaUsers className="text-yellow-500 text-5xl"/>
                             </div>
                             <div className="flex items-center justify-between p-5 gap-5 rounded-md shadow-md">
                                 <div className="flex flex-col items-center">
                                     <p className="font-semibold">Subscribed Users</p>
-                                    <h3 className="text-4xl font-bold">{(!subscribedUser == 0) ? subscribedUser : "sorry" }</h3>
+                                    <h3 className="text-4xl font-bold">{(!subscribedUser == 0) ?  subscribedUser : "No" }</h3>
                                 </div>
                                 <FaUsers className="text-green-500 text-5xl"/>
                             </div>

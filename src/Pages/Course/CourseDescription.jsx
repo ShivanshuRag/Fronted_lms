@@ -9,7 +9,7 @@ function CourseDescription(){
    const {state} = useLocation();
    const navigate = useNavigate();
 
-   const { role , data} = useSelector((state)=> state.auth)
+   const { role , data} = useSelector((state)=> state?.auth)
     
     return(
      <HomeLayout>
