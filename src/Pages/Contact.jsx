@@ -23,9 +23,9 @@ function Contact(){
    }
 
    async function onFormSubmit(e){
-    e.preventDefault;
+    e.preventDefault();
 
-    if(!userInput.email || !userInput.name || userInput.message){
+    if(!userInput.name || !userInput.email|| !userInput.message){
     toast.error(" All fields are required")
       return;
     }
@@ -37,7 +37,7 @@ function Contact(){
 
      try {
        
-        const response = axiosInstance.post("/contact" , userInput)
+        const response = axiosInstance.post("/contact" , userInput);
         toast.promise( response , {
             loading : "Submitting your message",
             success : "Form submitted successfully",
