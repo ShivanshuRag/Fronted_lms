@@ -8,7 +8,7 @@ function CourseCard({data}){
     return(
       <div
        onClick={()=> navigate("/course/description/" , {state : {...data}})}
-       className="text-white w-[22rem] h-[430px] shadow-lg rounded-lg cursor-pointer group overflow-hidden bg-zinc-700">
+       className="text-white w-[22rem] h-[430px]  rounded-lg cursor-pointer group overflow-hidden bg-zinc-700 shadow-[0_0_10px_black]">
        
         <div className=" overflow-hidden">
            <img 
@@ -19,11 +19,11 @@ function CourseCard({data}){
            
            <div className="p-3 space-y-1 text-white">
              <h2 className="text-xl font-bold text-yellow-500 line-clamp-2">
-                 {data?.title}
+             {" "} {data?.title}
             </h2> 
 
             <p className="line-clamp-2">
-            {data?.description}
+             {" "} {data?.description}
             </p>
 
             <p  className="font-semibold">
