@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {toast} from "react-hot-toast";
 import { AiOutlineArrowLeft } from "react-icons/ai";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {Link, useNavigate} from "react-router-dom";
 
 import HomeLayout from "../../Layouts/HomeLayout.jsx";
@@ -15,7 +15,8 @@ function ChangePassword() {
         
         oldPassword : "",
         newPassword : "",
-        userId : useSelector((state)=> state?.auth?.data?._id)
+        confirmPassword:"",
+        isPasswordVisible: false,
     });
 
     function handleInputChange(e){
@@ -27,11 +28,18 @@ function ChangePassword() {
       })
 
     }
+
+    const handleTogglePasswordVisibility = () => {
+      setPassword((prevPassword) => ({
+        ...prevPassword,
+        isPasswordVisible: !prevPassword.isPasswordVisible,
+      }));
+    };
    
     async function onFormSubmit(e){
       e.preventDefault();
 
-      const {oldPassword , newPassword} = password
+      const {oldPassword , newPassword , confirmPassword} = password
       
       if(!oldPassword || !newPassword){
 
@@ -45,11 +53,13 @@ function ChangePassword() {
          return 
       }
 
-     
-       
+      if( newPassword != confirmPassword){
+         toast.error(" password not match, Please try again!")
+      }
+  
      try {
        await dispatch(changePassword(password));
-        toast.success("Password changed successfully!")
+        
            dispatch(getUserData());
  
          navigate("/user/profile");
@@ -74,7 +84,8 @@ function ChangePassword() {
             <label htmlFor="oldPassword" className="text-lg font-semibold ">Old Password</label>
              <input
                required
-               type="password"
+               type={password.isPasswordVisible ? "text" : "password"}
+               
                name="oldPassword"
                id="oldPassword"
                placeholder="Enter your old password"
@@ -89,7 +100,8 @@ function ChangePassword() {
             <label htmlFor="newPassword" className="text-lg font-semibold ">New Password</label>
              <input
                required
-               type="password"
+               type={password.isPasswordVisible ? "text" : "password"}
+               
                name="newPassword"
                id="newPassword"
                placeholder="Enter your new password"
@@ -99,9 +111,38 @@ function ChangePassword() {
 
              />
               </div>
-              <button type="submit" className="w-full bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm py-2 text-lg cursor-pointer">
-              Change password
+
+              <div className=" flex flex-col gap-1">
+            <label htmlFor="confirmPassword" className="text-lg font-semibold ">Confirm Password</label>
+             <input
+               required
+               type={password.isPasswordVisible ? "text" : "password"}
+               
+               name="confirmPassword"
+               id="confirmPassword"
+               placeholder="Enter your confirm password"
+               className="bg-transparent px-2 py-1 border"
+               onChange={handleInputChange}
+               value={password?.confirmPassword}
+
+             />
+              </div>
+             
+              
+              <button type="button" 
+              onClick={handleTogglePasswordVisibility}
+              className="text-lg font-semibold"
+              //  className=" bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm py-2 text-lg cursor-pointer"
+              >
+              {password.isPasswordVisible ? "Hide Password" : "Show Password"}
              </button>
+              <button 
+              type="submit" 
+              
+              className="w-full bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm py-2 text-lg cursor-pointer">
+              Change Password
+             </button>
+              
              
               <Link to="/user/profile">
               <p className=" link text-accent cursor-pointer flex items-center justify-center w-full gap-2">

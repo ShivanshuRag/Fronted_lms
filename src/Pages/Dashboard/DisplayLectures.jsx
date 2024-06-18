@@ -30,7 +30,7 @@ function Displaylectures(){
 
     return (
         <HomeLayout>
-        <div className="flex flex-col gap-10 items-center justify-center min-h-[90vh] py-10 text-wihte mx-[5%]">
+        <div className="flex flex-col gap-10 items-center justify-center min-h-[90vh] py-10 text-wihte mx-[5%] text-base-300">
             <div className="text-center text-2xl font-semibold text-yellow-500">
                 Course Name: {state?.title}
             </div>
@@ -49,13 +49,13 @@ function Displaylectures(){
                         
                     >
                     </video>    
-                    <div>
+                    <div >
                         <h1>
                             <span className="text-yellow-500"> Title: {" "}
                             </span>
                             {lectures && lectures[currentVideo]?.title}
                         </h1>
-                        <p>
+                        <p >
                             <span className="text-yellow-500 line-clamp-4">
                                 Description: {" "}
                             </span>
@@ -85,7 +85,7 @@ function Displaylectures(){
                                         {lecture?.title}
                                     </p>
                                     {role === "Admin" && (
-                                        <button onClick={() => onLectureDelete(state?._id, lecture?._id)} className="btn-accent px-2 py-1 rounded-md font-semibold text-sm">
+                                        <button onClick={() => onLectureDelete(state?._id, lecture?._id)} className=" btn btn-accent px-2 py-1 rounded-md font-semibold text-sm">
                                             Delete lecture
                                         </button>
                                     )}
@@ -96,7 +96,7 @@ function Displaylectures(){
                </ul>
             </div>) : (
                 role === "Admin" && (
-                    <button onClick={() => navigate("/course/addlecture", {state: {...state}})} className="btn-primary px-2 py-1 rounded-md font-semibold text-sm">
+                    <button onClick={() => navigate("/course/addlecture", {state: {...state}})} className="btn btn-primary px-2 py-1 rounded-md font-semibold text-sm">
                         Add new lecture
                     </button>
                 )

@@ -5,9 +5,7 @@ import CarouselSlide from "../Components/CarouselSlide.jsx";
  import {celebrities} from "../Contants/celebrityData.js";
  import HomeLayout from "../Layouts/HomeLayout.jsx";
 function AboutUs(){
-  
-  
-    
+ 
   return(
   <HomeLayout>
     <div className="pl-20 pt-20 flex flex-col text-white">
@@ -39,13 +37,31 @@ function AboutUs(){
     
        </div>
        <div className="carousel w-1/2 m-auto my-16">
-        {celebrities && celebrities.map(celebrity => (<CarouselSlide 
+       
+        {celebrities && celebrities.map(celebrity => ( 
+          
+          
+          
+         <CarouselSlide 
+                
                 {...celebrity} 
+                
                 key={celebrity.slideNumber} 
+                
                 totalSlides={celebrities.length}
+          
+            /> 
+           
+          
+          ) 
+
+            )}
+              
+              
                 
-            />))}
+             
                 
+              
             </div>
 
     </div>
