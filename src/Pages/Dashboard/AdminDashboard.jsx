@@ -31,9 +31,10 @@ function AdminDashboard() {
             {
                 label: "User Details",
                 data: [allUserCount, subscribedUser ],
-                backgroundColor: ["yellow", "green" ],
+                backgroundColor: ["#FDDA0D", "green" ],
                 borderWidth: 1,
-                borderColor: ["yellow","green" ]
+                borderColor: ["yellow","green" ],
+                 
             },
         ]
     };
@@ -45,7 +46,7 @@ function AdminDashboard() {
             {
                 label: "Sales / Month",
                 data: monthlySalesRecord,
-                backgroundColor: ["red"],
+                backgroundColor: ["green"],
                 borderColor: ["white"],
                 borderWidth: 2
             }
@@ -78,28 +79,28 @@ function AdminDashboard() {
 
     return (
         <HomeLayout>
-            <div className="min-h-[90vh] pt-5 flex flex-col flex-wrap gap-10 text-white">
-                <h1 className="text-center text-5xl font-semibold text-yellow-500">
+            <div className="min-h-[90vh] pt-5 flex flex-col flex-wrap gap-10 text-white ">
+                <h1 className="text-center text-5xl font-semibold text-yellow-500 ">
                     Admin Dashboard
                 </h1>
 
-                <div className="grid grid-cols-2 gap-5 m-auto mx-10">
-                    <div className="flex flex-col items-center gap-10 p-5 shadow-lg rounded-md">
-                        <div className="w-80 h-80">
+                <div className="grid grid-cols-2 gap-5 m-auto mx-10 shadow-[0_0_10px_black]">
+                    <div className="flex flex-col items-center gap-10 p-5  rounded-md">
+                        <div className="w-80 h-80 shadow-[0_0_10px_black]">
                             <Pie data={userData}/>
                         </div>
 
                         <div className="grid grid-cols-2 gap-5">
-                            <div className="flex items-center justify-between p-5 gap-5 rounded-md shadow-md">
-                                <div className="flex flex-col items-center">
-                                    <p className="font-semibold">Registered Users</p>
+                            <div className="flex items-center justify-between p-5 gap-5 rounded-md shadow-[0_0_10px_black]">
+                                <div className="flex flex-col items-center ">
+                                    <p className="font-semibold ">Registered Users</p>
                                     <h3 className="text-4xl font-bold">{(!allUserCount == 0) ? allUserCount : "No"}</h3>
                                 </div>
                                 <FaUsers className="text-yellow-500 text-5xl"/>
                             </div>
-                            <div className="flex items-center justify-between p-5 gap-5 rounded-md shadow-md">
+                            <div className="flex items-center justify-between p-5 gap-5 rounded-md shadow-[0_0_10px_black]">
                                 <div className="flex flex-col items-center">
-                                    <p className="font-semibold">Subscribed Users</p>
+                                    <p className="font-semibold ">Subscribed Users</p>
                                     <h3 className="text-4xl font-bold">{(!subscribedUser == 0) ?  subscribedUser : "No" }</h3>
                                 </div>
                                 <FaUsers className="text-green-500 text-5xl"/>
@@ -108,19 +109,19 @@ function AdminDashboard() {
                     </div>
 
                     <div className="flex flex-col items-center gap-10 p-5 shadow-lg rounded-md">
-                        <div className="h-80 w-full relative">
+                        <div className="h-80 w-full relative shadow-[0_0_10px_black]">
                             <Bar  className="absolute bottom-0 h-80 w-full" data={salesData} />
                         </div>
 
                         <div className="grid grid-cols-2 gap-5">
-                            <div className="flex items-center justify-between p-5 gap-5 rounded-md shadow-md">
+                            <div className="flex items-center justify-between p-5 gap-5 rounded-md shadow-[0_0_10px_black]">
                                 <div className="flex flex-col items-center">
                                     <p className="font-semibold">Subscription Count</p>
                                     <h3 className="text-4xl font-bold">{allPayments?.count}</h3>
                                 </div>
                                 <FcSalesPerformance className="text-yellow-500 text-5xl"/>
                             </div>
-                            <div className="flex items-center justify-between p-5 gap-5 rounded-md shadow-md">
+                            <div className="flex items-center justify-between p-5 gap-5 rounded-md shadow-[0_0_10px_black]">
                                 <div className="flex flex-col items-center">
                                     <p className="font-semibold">Total Revenue</p>
                                     <h3 className="text-4xl font-bold">{allPayments?.count * 499}</h3>
@@ -147,9 +148,9 @@ function AdminDashboard() {
                         </button>
                     </div>
 
-                    <table className="table overflow-x-scroll">
+                    <table className="table overflow-x-scroll ">
                             <thead>
-                                <tr>
+                                <tr className="text-base-300 text-bold bg-yellow-600">
                                     <th>S No</th>
                                     <th>Course Title</th>
                                     <th>Course Category</th>
