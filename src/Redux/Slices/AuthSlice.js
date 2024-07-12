@@ -5,7 +5,8 @@ import axiosInstance from "../../Helpers/axiosIntances.js";
 const initialState = {
     isLoggedIn: localStorage.getItem('isLoggedIn') || false,
     role: localStorage.getItem('role') || "",
-    data: localStorage.getItem('token') != undefined ? JSON.parse(localStorage.getItem('token')) : {}
+    data: localStorage.getItem('token') 
+    // != undefined ? JSON.parse(localStorage.getItem('token')) : {}
 }
 export const createAccount = createAsyncThunk("/auth/signup", async (data) => {
     try {
@@ -100,6 +101,41 @@ export const getUserData = createAsyncThunk("/user/details", async () => {
     }
 })
 
+export const loginPhone = createAsyncThunk("/auth/login" , async(data)=>{
+    try {
+        const response = axiosInstance.post("user/sendotp" , data);
+         toast.promise( response ,{
+            loading : "Wait! authentication in progress...",
+            //  success : (data)=>{
+            //      return data?.data?.message
+            //  },
+             success : " OTP send successfully",
+             error :  " Failed to send OTP"
+         })
+          return  (await response).data;
+    } catch (error) {
+         toast.error(error.message);
+    }
+})
+
+export const verifyPhone = createAsyncThunk("/auth/login" , async(data)=>{
+    try {
+       const response = axiosInstance.post("/user/verifyotp" , data);
+        toast.promise( response , {
+            loading: "Verifing your OTP..",
+            success : (data)=>{
+                 return data?.data?.message
+            } ,
+            error: "Failed to verify OTP , Try Again..."
+        }) 
+
+        return ( await response).data;
+
+    } catch (error) {
+         toast.error( error?.message)
+    }
+})
+
 
 const authSlice = createSlice({
     name: 'auth',
@@ -114,6 +150,14 @@ const authSlice = createSlice({
             state.isLoggedIn = true;
             state.data = action?.payload?.user;
             state.role = action?.payload?.user?.role
+        }).addCase(loginPhone.fulfilled , (state , action)=>{
+
+            localStorage.setItem('token' , JSON.stringify(action?.payload?.user));
+            localStorage.setItem('isLoggedIn' , true);
+            localStorage.setItem('role', action?.payload?.user?.role );
+            state.isLoggedIn = true;
+            state.data = action?.payload?.user;
+            state.role = action?.payload?.user?.role;
         }).addCase(logout.fulfilled, (state) => {
             localStorage.clear();
             state.data = {};
