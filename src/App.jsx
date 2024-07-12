@@ -15,6 +15,7 @@ import Displaylectures from './Pages/Dashboard/DisplayLectures.jsx'
 import Denied from './Pages/Denied.jsx'
 import HomePage from './Pages/HomePage.jsx'
 import Login from './Pages/Login.jsx'
+import LoginWithNumber from './Pages/LoginWithNumber.jsx'
 import NotFound from './Pages/NotFound.jsx'
 import Checkout from './Pages/Payment/Checkout.jsx'
 import CheckoutFailure from './Pages/Payment/CheckoutFailure.jsx'
@@ -23,6 +24,7 @@ import Signup from './Pages/Signup.jsx'
 import ChangePassword from './Pages/User/ChangePassword.jsx'
 import EditProfile from './Pages/User/EditProfile.jsx'
 import Profile from './Pages/User/Profile.jsx'
+import VerifyOTP from './Pages/VerifyOTP.jsx'
 
 function App() { 
   
@@ -35,6 +37,8 @@ function App() {
     <Route path="/about" element={<AboutUs/>} ></Route>
     <Route path="/signup" element={<Signup/>} ></Route>
     <Route path="/login" element={<Login/>} ></Route>
+    <Route path="/loginwithnumber" element={<LoginWithNumber/>} ></Route>
+    <Route path="/verifyOTP" element={<VerifyOTP/>} ></Route>
 
     <Route path="/courses" element={<CourseList/>}></Route>
     <Route path="/course/description" element={<CourseDescription/>}></Route>
