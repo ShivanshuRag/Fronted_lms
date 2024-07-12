@@ -20,6 +20,7 @@ function Signup() {
     const [signupData, setSignupData] = useState({
         fullName: "",
         email: "",
+        phoneNumber: "",
         password: "",
         avatar: ""
     });
@@ -52,7 +53,7 @@ function Signup() {
 
     async function createNewAccount(event) {
         event.preventDefault();
-        if(!signupData.email || !signupData.password || !signupData.fullName || !signupData.avatar) {
+        if(!signupData.email || !signupData.password || !signupData.fullName || !signupData.phoneNumber ||!signupData.avatar) {
             toast.error("Please fill all the details");
             return;
         }
@@ -67,6 +68,12 @@ function Signup() {
             toast.error("Invalid email id");
             return;
         }
+
+        // checking valid phone number
+        if (!/^\d{10}$/.test(signupData.phoneNumber)) {
+            alert('Please enter a valid 10-digit phone number');
+            return;
+          }
         // checking password validation
         if(!isValidPassword(signupData.password)) {
             toast.error("Password should be 6 - 16 character long with atleast a number and special character");
@@ -76,6 +83,7 @@ function Signup() {
         const formData = new FormData();
         formData.append("fullName", signupData.fullName);
         formData.append("email", signupData.email);
+        formData.append("phoneNumber", signupData.phoneNumber);
         formData.append("password", signupData.password);
         formData.append("avatar", signupData.avatar);
 
@@ -87,6 +95,7 @@ function Signup() {
         setSignupData({
             fullName: "",
             email: "",
+            phoneNumber: "",
             password: "",
             avatar: ""
         });
@@ -140,6 +149,19 @@ function Signup() {
                             className="bg-transparent px-2 py-1 border"
                             onChange={handleUserInput}
                             value={signupData.email}
+                        />
+                    </div>
+                    <div className='flex flex-col gap-1'>
+                        <label htmlFor="phoneNumber" className='font-semibold'> PhoneNumber </label>
+                        <input 
+                            type="tel" 
+                            required pattern="[0-9]{10}"
+                            name="phoneNumber"
+                            id="phoneNumber"
+                            placeholder="Enter your phoneNumber.."
+                            className="bg-transparent px-2 py-1 border"
+                            onChange={handleUserInput}
+                            value={signupData.phoneNumber}
                         />
                     </div>
                     <div className='flex flex-col gap-1'>
