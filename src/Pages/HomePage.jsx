@@ -1,4 +1,5 @@
 
+// import { useSelector } from "react-redux";
 import { useSelector } from "react-redux";
 import {Link} from "react-router-dom"
 import { useNavigate } from "react-router-dom";
@@ -9,8 +10,11 @@ import HomeLayout from "../Layouts/HomeLayout.jsx";
 function HomePage(){
  const navigate = useNavigate();
  const userData = useSelector((state)=> state?.auth?.data)
- console.log(userData);
-   
+ 
+  
+const islogged = useSelector((state)=> state?.auth?.isLoggedIn)
+
+
   async function clickAvatar (){
    
    await navigate("/user/profile")
@@ -18,14 +22,16 @@ function HomePage(){
  }
  return(
   <>
-  <div className=" flex flex-col h-10"> 
-  <div className=" absolute top-20  right-20 "
-  
-  > 
-     
-     <img src={userData?.avatar?.secure_url} className="  w-10 h-10 rounded-full border-2 border-gray-400"  onClick={clickAvatar}/>
-  </div>
-  </div>
+  { islogged == true  ? (
+    <div className=" flex flex-col h-10"> 
+    <div className=" absolute top-20  right-20 "
+    
+    > 
+       
+       <img src={userData?.avatar?.secure_url} className="  w-10 h-10 rounded-full border-2 border-gray-400"  onClick={clickAvatar}/>
+    </div>
+    </div>
+  ):( "" ) }
  <HomeLayout> 
   
    <div className="pt-10 text-white flex items-center justify-center gap-10 mx-16 h-[90vh]">
