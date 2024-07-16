@@ -1,13 +1,35 @@
 
+import { useSelector } from "react-redux";
 import {Link} from "react-router-dom"
+import { useNavigate } from "react-router-dom";
 
 import StudyImage_1 from "../Assets/Images/StudyImage_1.jpg"
 import HomeLayout from "../Layouts/HomeLayout.jsx";
+
 function HomePage(){
+ const navigate = useNavigate();
+ const userData = useSelector((state)=> state?.auth?.data)
+ console.log(userData);
+   
+  async function clickAvatar (){
+   
+   await navigate("/user/profile")
+
+ }
  return(
- <HomeLayout> 
-   <div className="pt-10 text-white flex items-center justify-center gap-10 mx-16 h-[90vh]">
+  <>
+  <div className=" flex flex-col h-10"> 
+  <div className=" absolute top-20  right-20 "
   
+  > 
+     
+     <img src={userData?.avatar?.secure_url} className="  w-10 h-10 rounded-full border-2 border-gray-400"  onClick={clickAvatar}/>
+  </div>
+  </div>
+ <HomeLayout> 
+  
+   <div className="pt-10 text-white flex items-center justify-center gap-10 mx-16 h-[90vh]">
+    
    <div className="w-1/2 space-y-6">
     <h1 className="text-5xl font-semibold">
      Find Out Bestest
@@ -35,18 +57,18 @@ function HomePage(){
     </div>
    </div>
 
-   <div className="w-1/2 flex items-center justify-center"
+   <div className="w-1/2 flex items-center justify-center  "
     style={{
       filter: "drop-shadow(0px 10px 10px rgb(0,0,0))"
   }}
    >
-    <img src={StudyImage_1} alt="imge" />
+    <img src={StudyImage_1} alt="imge" className="rounded-md" />
    </div>
 
    </div>
 
  </HomeLayout>
-
+ </>
  )
 
 }
