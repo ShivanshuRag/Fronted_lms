@@ -1,23 +1,28 @@
 
-// import { useSelector } from "react-redux";
-import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch,useSelector } from "react-redux";
 import {Link} from "react-router-dom"
 import { useNavigate } from "react-router-dom";
 
 import StudyImage_1 from "../Assets/Images/StudyImage_1.jpg"
 import HomeLayout from "../Layouts/HomeLayout.jsx";
-
+import { getUserData } from "../Redux/Slices/AuthSlice.js";
 function HomePage(){
  const navigate = useNavigate();
+ const dispatch = useDispatch();
  const userData = useSelector((state)=> state?.auth?.data)
  
   
 const islogged = useSelector((state)=> state?.auth?.isLoggedIn)
+ 
+useEffect(() => {
+  // Fetch user data on component mount
+  dispatch(getUserData());
+}, [dispatch])
 
-
-  async function clickAvatar (){
+   function clickAvatar (){
    
-   await navigate("/user/profile")
+    navigate("/user/profile")
 
  }
  return(

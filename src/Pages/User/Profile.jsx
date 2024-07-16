@@ -1,4 +1,5 @@
 
+import { useEffect } from 'react';
 import {toast} from 'react-hot-toast';
 import { useDispatch , useSelector } from 'react-redux';
 import { Link , useNavigate } from 'react-router-dom';
@@ -12,8 +13,15 @@ function Profile(){
 
 const dispatch = useDispatch();
 const navigate = useNavigate();
+
+
 const userData = useSelector((state)=> state?.auth?.data);
 
+  useEffect(() => {
+   // Fetch user data on component mount
+   dispatch(getUserData());
+ }, [dispatch]);
+ 
  async function handleCancellation(){
     
     toast("Initiating cancellation");
