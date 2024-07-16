@@ -37,13 +37,13 @@ function LoginWithNumber(){
   
   if(response?.payload?.success)
 
-    // naviagte("/verifyOTP")
+    naviagte("/verifyOTP")
 
     setLoginData({
         phoneNumber: "",
         password: "",
     });
-    naviagte("/verifyOTP")
+    // naviagte("/verifyOTP")
  }
 
 return(

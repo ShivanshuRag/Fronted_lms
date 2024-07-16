@@ -39,7 +39,7 @@ function VerifyOTP(){
     naviagte("/")
 
     setLoginData({
-      opt: ""
+      otp: ""
     });
 
  }

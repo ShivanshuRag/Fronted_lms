@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-hot-toast";
 
 import axiosInstance from "../../Helpers/axiosIntances.js";
-const initialState = {
+const initialState = { 
     isLoggedIn: localStorage.getItem('isLoggedIn') || false,
     role: localStorage.getItem('role') || "",
     data: localStorage.getItem('token') 
@@ -100,16 +100,17 @@ export const getUserData = createAsyncThunk("/user/details", async () => {
         toast.error(error.message);
     }
 })
-
-export const loginPhone = createAsyncThunk("/auth/login" , async(data)=>{
+  
+//  crateAsyncThunk me jo navigation ("/auth/ number") hai , ye client side ke liye hai  
+export const loginPhone = createAsyncThunk("/auth/number" , async(data)=>{
     try {
         const response = axiosInstance.post("user/sendotp" , data);
          toast.promise( response ,{
             loading : "Wait! authentication in progress...",
-            //  success : (data)=>{
-            //      return data?.data?.message
-            //  },
-             success : " OTP send successfully",
+             success : (data)=>{
+                 return data?.data?.message
+             },
+            //  success : " OTP send successfully",
              error :  " Failed to send OTP"
          })
           return  (await response).data;
@@ -118,7 +119,7 @@ export const loginPhone = createAsyncThunk("/auth/login" , async(data)=>{
     }
 })
 
-export const verifyPhone = createAsyncThunk("/auth/login" , async(data)=>{
+export const verifyPhone = createAsyncThunk("/auth/verify" , async(data)=>{
     try {
        const response = axiosInstance.post("/user/verifyotp" , data);
         toast.promise( response , {
@@ -158,6 +159,14 @@ const authSlice = createSlice({
             state.isLoggedIn = true;
             state.data = action?.payload?.user;
             state.role = action?.payload?.user?.role;
+        }).addCase(verifyPhone.fulfilled , (state , action)=>{
+
+            localStorage.setItem('token' , JSON.stringify(action?.payload?.user));
+            localStorage.setItem('isLoggedIn' , true);
+            localStorage.setItem('role', action?.payload?.user?.role  );
+            state.isLoggedIn = true;
+            state.data = action?.payload?.user;
+            state.role = action?.payload?.user?.role
         }).addCase(logout.fulfilled, (state) => {
             localStorage.clear();
             state.data = {};
