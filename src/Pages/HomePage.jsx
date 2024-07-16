@@ -73,7 +73,7 @@ useEffect(() => {
       filter: "drop-shadow(0px 10px 10px rgb(0,0,0))"
   }}
    >
-    <img src={StudyImage_1} alt="imge" className="rounded-md" />
+    <img src={StudyImage_1} alt="imge" className="rounded-xl" />
    </div>
 
    </div>
