@@ -20,8 +20,9 @@ const userData = useSelector((state)=> state?.auth?.data);
   useEffect(() => {
    // Fetch user data on component mount
    dispatch(getUserData());
- }, [dispatch]);
- 
+ }, [dispatch]);  // eski vajah se otp user fetch kar pa raha hai
+
+
  async function handleCancellation(){
     
     toast("Initiating cancellation");

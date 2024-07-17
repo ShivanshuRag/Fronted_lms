@@ -18,7 +18,8 @@ const islogged = useSelector((state)=> state?.auth?.isLoggedIn)
 useEffect(() => {
   // Fetch user data on component mount
   dispatch(getUserData());
-}, [dispatch])
+}, [dispatch]) //  // eski vajah se otp user fetch kar pa raha hai
+
 
    function clickAvatar (){
    
