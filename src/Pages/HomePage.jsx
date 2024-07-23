@@ -1,6 +1,8 @@
 
 import { useEffect } from "react";
-import { useDispatch,useSelector } from "react-redux";
+// import { toast} from "react-hot-toast"
+import { useDispatch} from "react-redux"
+import { useSelector } from "react-redux";
 import {Link} from "react-router-dom"
 import { useNavigate } from "react-router-dom";
 
@@ -15,12 +17,17 @@ function HomePage(){
   
 const islogged = useSelector((state)=> state?.auth?.isLoggedIn)
  
-useEffect(() => {
+ 
+ 
+   useEffect(() => {
   // Fetch user data on component mount
-  dispatch(getUserData());
-}, [dispatch]) //  // eski vajah se otp user fetch kar pa raha hai
+    if(islogged ){ 
+    dispatch(getUserData()) ;
+    
+    }
+}, [dispatch , islogged]) //  // eski vajah se otp user fetch kar pa raha hai
 
-
+ 
    function clickAvatar (){
    
     navigate("/user/profile")
@@ -28,7 +35,7 @@ useEffect(() => {
  }
  return(
   <>
-  { islogged == true  ? (
+  { islogged === true  ? (
     <div className=" flex flex-col h-10"> 
     <div className=" absolute top-20  right-20 "
     
@@ -37,7 +44,13 @@ useEffect(() => {
        <img src={userData?.avatar?.secure_url} className="  w-10 h-10 rounded-full border-2 border-gray-400"  onClick={clickAvatar}/>
     </div>
     </div>
-  ):( "" ) }
+  ):( " " ) }
+    
+    
+    
+       
+       
+     
  <HomeLayout> 
   
    <div className="pt-10 text-white flex items-center justify-center gap-10 mx-16 h-[90vh]">
