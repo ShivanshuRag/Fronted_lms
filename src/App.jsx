@@ -1,6 +1,7 @@
 
 import './App.css'
 
+import {GoogleOAuthProvider} from '@react-oauth/google'
 import { Route,Routes  } from 'react-router-dom'
 
 import RequireAuth from './Components/Auth/RequireAuth.jsx'
@@ -25,9 +26,15 @@ import ChangePassword from './Pages/User/ChangePassword.jsx'
 import EditProfile from './Pages/User/EditProfile.jsx'
 import Profile from './Pages/User/Profile.jsx'
 import VerifyOTP from './Pages/VerifyOTP.jsx'
-
 function App() { 
   
+   const GoogleAuthWrapper =()=>{
+     return(
+       <GoogleOAuthProvider clientId ='230994313138-p6jvbl6g829rl2tgm971oeamnkj5lgls.apps.googleusercontent.com'>
+           <Login/>
+       </GoogleOAuthProvider>
+     )
+   }
   return (
    <>
    {/* <h1
@@ -36,14 +43,16 @@ function App() {
     <Route path="/" element={<HomePage />} ></Route>
     <Route path="/about" element={<AboutUs/>} ></Route>
     <Route path="/signup" element={<Signup/>} ></Route>
-    <Route path="/login" element={<Login/>} ></Route>
+    {/* <Route path="/login" element={<GoogleAuthWrapper/>} ></Route> */}
     <Route path="/loginwithnumber" element={<LoginWithNumber/>} ></Route>
     <Route path="/verifyOTP" element={<VerifyOTP/>} ></Route>
-
+    
     <Route path="/courses" element={<CourseList/>}></Route>
     <Route path="/course/description" element={<CourseDescription/>}></Route>
     <Route path="/contact" element={<Contact/>}></Route> 
     <Route path="/denied" element={<Denied/>}></Route>
+    <Route path="/login" element={<GoogleAuthWrapper/>}></Route>
+
 
     <Route element={<RequireAuth allowedRoles={["Admin"]}/>}>
     <Route path="/course/create" element={<CreateCourse/>}></Route>

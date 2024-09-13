@@ -1,12 +1,20 @@
+
+import { useGoogleLogin } from '@react-oauth/google';
 import { useState } from "react";
+import GoogleButton from 'react-google-button'
 import { toast } from "react-hot-toast";
 import { useDispatch } from "react-redux";
-import {Link , useNavigate} from "react-router-dom";
+import { Link , useNavigate} from "react-router-dom";
 
 import HomeLayout from "../Layouts/HomeLayout";
 import { login } from "../Redux/Slices/AuthSlice.js";
-
+import { googleAuth } from '../Redux/Slices/AuthSlice.js';
 function Login(){
+
+  // ========== Google Login ===========
+
+
+  
 
  const dispatch = useDispatch();
  const naviagte = useNavigate();
@@ -46,6 +54,41 @@ function Login(){
 
  }
 
+ const handleGoogleLogin = async (authResult) => {
+  console.log(" ye hai auth result",authResult);
+try {
+
+if(authResult["code"] ){
+  console.log(authResult.code);
+    const response = await googleAuth(authResult.code); 
+       
+    console.log('result------', response.data);
+    console.log(response.data);
+    // props.setUser(response.data.data.user);
+    
+}else {
+  console.log( "authResult",authResult);
+  throw new Error(authResult);
+}
+  
+} catch (error) {
+console.error('Error while requesting Google code:', error);
+// Display a user-friendly error message
+}
+
+}
+
+// const HandleGooglResult = handleGoogleLogin();
+// console.log(HandleGooglResult);
+
+const googleLogin = useGoogleLogin({
+
+flow: "auth-code", 
+
+onSuccess:handleGoogleLogin ,
+onError : handleGoogleLogin,
+});
+
 return(
 <HomeLayout>
   <div className="flex overflow-x-auto items-center justify-center h-[100vh]">
@@ -80,13 +123,18 @@ return(
             />
 
          </div>
-         <button type="submit" className='mt-2 bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm py-2 font-semibold text-lg cursor-pointer'>
+         <button type="submit" className='mt-2 bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm py-2 font-semibold text-lg cursor-pointer '>
                        Login
         </button>
         <p className="text-center">
     Donot hanve an account ? <Link to="/signup" className='link text-accent cursor-pointer'> Signup</Link>
       </p>
-         
+      <div className=" flex items-center justify-center  "><GoogleButton
+      label='Continue with Google'
+      onClick={googleLogin}
+      style={{  width: '100%' , height: '50px' ,   backgroundColor: '#4285F4' , color: 'white' , border: '1px solid black' }}
+     /></div>   
+        
      </form>
 
   </div>

@@ -2,10 +2,14 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-hot-toast";
 
 import axiosInstance from "../../Helpers/axiosIntances.js";
+
+
+
+
 const initialState = { 
     isLoggedIn: localStorage.getItem('isLoggedIn') || false,
     role: localStorage.getItem('role') || "",
-    data: localStorage.getItem('token') 
+    data: localStorage.getItem('token') != undefined ? JSON.parse(localStorage.getItem('token')) : {}
     // != undefined ? JSON.parse(localStorage.getItem('token')) : {}
 }
 export const createAccount = createAsyncThunk("/auth/signup", async (data) => {
@@ -20,7 +24,7 @@ export const createAccount = createAsyncThunk("/auth/signup", async (data) => {
         });
         return (await res).data;
     } catch(error) {
-        toast.error(error?.response?.data?.message);
+        toast.error(error?.res?.data?.message);
     }
 })
 
@@ -54,7 +58,7 @@ export const logout = createAsyncThunk("/auth/logout", async () => {
         });
         return (await res).data;
     } catch(error) {
-        toast.error(error?.response?.data?.message);
+        toast.error(error?.res?.data?.message);
     }
 });
 
@@ -70,7 +74,7 @@ export const updateProfile = createAsyncThunk("/user/update/profile", async (dat
         });
         return (await res).data;
     } catch(error) {
-        toast.error(error?.response?.data?.message);
+        toast.error(error?.res?.data?.message);
     }
 })
 
@@ -95,9 +99,12 @@ export const changePassword = createAsyncThunk("/user/changepassword" , async (d
 export const getUserData = createAsyncThunk("/user/details", async () => {
     try {
         const res = axiosInstance.get("user/me");
+       
+         
         return (await res).data;
+         
     } catch(error) {
-        toast.error(error.message);
+        toast.error(error?.message);
     }
 })
   
@@ -136,6 +143,26 @@ export const verifyPhone = createAsyncThunk("/auth/verify" , async(data)=>{
          toast.error( error?.message)
     }
 })
+ 
+export const googleAuth =  async(code)=>{
+    try {
+        const response = axiosInstance.get(`/auth/google?code=${code}`  );
+        toast.promise( response , {
+            loading: "Verifing your code..",
+            success : (data)=>{
+                 return data?.data?.message
+            } ,
+            error: "Failed to verify Code , Try Again..."
+        })
+
+        return ( await response).data;
+    } catch (error) {
+         toast.error( error?.message)
+    }
+};
+
+  
+        
 
 
 const authSlice = createSlice({
@@ -180,7 +207,15 @@ const authSlice = createSlice({
             state.isLoggedIn = true;
             state.data = action?.payload?.user;
             state.role = action?.payload?.user?.role
-        });
+        })
+        // .addCase(googleAuth.fulfilled, (state, action) => {
+        //     localStorage.setItem('token', JSON.stringify(action?.payload?.user));
+        //     localStorage.setItem('isLoggedIn', true);
+        //     localStorage.setItem('role', action?.payload?.user?.role);
+        //     state.isLoggedIn = true;
+        //     state.data = action?.payload?.user;
+        //     state.role = action?.payload?.user?.role
+        // })    
        
        
     }
