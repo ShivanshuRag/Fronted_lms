@@ -144,9 +144,11 @@ export const verifyPhone = createAsyncThunk("/auth/verify" , async(data)=>{
     }
 })
  
-export const googleAuth =  async(code)=>{
+export const googleAuth = createAsyncThunk("/auth/google" , async(code)=>{
+   
     try {
-        const response = axiosInstance.get(`/auth/google?code=${code}`  );
+        
+        const response = axiosInstance.get(`/user/google?code=${code}`  );
         toast.promise( response , {
             loading: "Verifing your code..",
             success : (data)=>{
@@ -155,11 +157,11 @@ export const googleAuth =  async(code)=>{
             error: "Failed to verify Code , Try Again..."
         })
 
-        return ( await response).data;
+        return ( await response).data ;
     } catch (error) {
          toast.error( error?.message)
     }
-};
+});
 
   
         
@@ -208,14 +210,14 @@ const authSlice = createSlice({
             state.data = action?.payload?.user;
             state.role = action?.payload?.user?.role
         })
-        // .addCase(googleAuth.fulfilled, (state, action) => {
-        //     localStorage.setItem('token', JSON.stringify(action?.payload?.user));
-        //     localStorage.setItem('isLoggedIn', true);
-        //     localStorage.setItem('role', action?.payload?.user?.role);
-        //     state.isLoggedIn = true;
-        //     state.data = action?.payload?.user;
-        //     state.role = action?.payload?.user?.role
-        // })    
+        .addCase(googleAuth.fulfilled, (state, action) => {
+            localStorage.setItem('token', JSON.stringify(action?.payload?.user));
+            localStorage.setItem('isLoggedIn', true);
+            localStorage.setItem('role', action?.payload?.user?.role);
+            state.isLoggedIn = true;
+            state.data = action?.payload?.user;
+            state.role = action?.payload?.user?.role
+        })    
        
        
     }

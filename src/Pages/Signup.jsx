@@ -1,5 +1,6 @@
-
+import { useGoogleLogin } from '@react-oauth/google';
 import { useState } from 'react';
+import GoogleButton from 'react-google-button';
 import { toast } from 'react-hot-toast';
 import { BsPersonCircle } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
@@ -8,6 +9,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { isEmail, isValidPassword } from '../Helpers/regexMatcher.js';
 import HomeLayout from '../Layouts/HomeLayout.jsx';
 import { createAccount } from '../Redux/Slices/AuthSlice.js';
+import { googleAuth } from '../Redux/Slices/AuthSlice.js';
+
 
 function Signup() {
 
@@ -20,7 +23,7 @@ function Signup() {
     const [signupData, setSignupData] = useState({
         fullName: "",
         email: "",
-        phoneNumber: "",
+        // phoneNumber: "",
         password: "",
         avatar: ""
     });
@@ -70,10 +73,10 @@ function Signup() {
         }
 
         // checking valid phone number
-        if (!/^\d{10}$/.test(signupData.phoneNumber)) {
-            alert('Please enter a valid 10-digit phone number');
-            return;
-          }
+        // if (!/^\d{10}$/.test(signupData.phoneNumber)) {
+        //     alert('Please enter a valid 10-digit phone number');
+        //     return;
+        //   }
         // checking password validation
         if(!isValidPassword(signupData.password)) {
             toast.error("Password should be 6 - 16 character long with atleast a number and special character");
@@ -95,7 +98,7 @@ function Signup() {
         setSignupData({
             fullName: "",
             email: "",
-            phoneNumber: "",
+            // phoneNumber: "",
             password: "",
             avatar: ""
         });
@@ -103,6 +106,42 @@ function Signup() {
 
 
     }
+
+    const handleGoogleLogin = async (authResult) => {
+        console.log(" ye hai auth result",authResult);
+           try {
+      
+            if(authResult["code"] ){
+             console.log(authResult.code);
+              const response = await dispatch(googleAuth(authResult.code));
+          // const response = await googleAuth(authResult.code); 
+          
+              
+         
+          console.log('result------', response);
+      
+          
+          // props.setUser(response.data.data.user);  
+          navigate("/") 
+      }else {
+        console.log( "authResult",authResult);
+        throw new Error(authResult);
+      }
+        
+      } catch (error) {
+      console.error('Error while requesting Google code:', error);
+      // Display a user-friendly error message
+      }
+      
+      }
+
+      const googleLogin = useGoogleLogin({
+
+        flow: "auth-code", 
+        
+        onSuccess:handleGoogleLogin ,
+        onError : handleGoogleLogin,
+        });
 
     return (
         <HomeLayout>
@@ -151,7 +190,7 @@ function Signup() {
                             value={signupData.email}
                         />
                     </div>
-                    <div className='flex flex-col gap-1'>
+                    {/* <div className='flex flex-col gap-1'>
                         <label htmlFor="phoneNumber" className='font-semibold'> PhoneNumber </label>
                         <input 
                             type="tel" 
@@ -163,7 +202,7 @@ function Signup() {
                             onChange={handleUserInput}
                             value={signupData.phoneNumber}
                         />
-                    </div>
+                    </div> */}
                     <div className='flex flex-col gap-1'>
                         <label htmlFor="password" className='font-semibold'> Password </label>
                         <input 
@@ -185,6 +224,11 @@ function Signup() {
                     <p className="text-center">
                         Already have an account ? <Link to="/login" className='link text-accent cursor-pointer'> Login</Link>
                     </p>
+                        <div className=" flex items-center justify-center  "><GoogleButton
+                        label='Continue with Google'
+                        onClick={googleLogin}
+                        style={{  width: '100%' , height: '50px' ,   backgroundColor: '#4285F4' , color: 'white' , border: '1px solid black' }}
+                        /></div> 
 
                 </form>
             </div>

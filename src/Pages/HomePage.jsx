@@ -5,6 +5,7 @@ import { useDispatch} from "react-redux"
 import { useSelector } from "react-redux";
 import {Link} from "react-router-dom"
 import { useNavigate } from "react-router-dom";
+import { TypeAnimation } from 'react-type-animation'
 
 import StudyImage_1 from "../Assets/Images/StudyImage_1.jpg"
 import HomeLayout from "../Layouts/HomeLayout.jsx";
@@ -56,13 +57,30 @@ const islogged = useSelector((state)=> state?.auth?.isLoggedIn)
    <div className="pt-10 text-white flex items-center justify-center gap-10 mx-16 h-[90vh]">
     
    <div className="w-1/2 space-y-6">
-    <h1 className="text-5xl font-semibold">
-     Find Out Bestest
-
-     <span className="text-pink-500  font-bold">
-
-     </span>
-    </h1>
+   <h1 className="text-5xl font-semibold">
+      
+    
+      <TypeAnimation
+       sequence={[
+         // Same substring at the start will only be typed out once, initially
+         ' Find Out Bestest',
+         1000, // wait 1s before replacing "Mice" with "Hamsters"
+         ' Find Out Skills',
+         1000,
+         ' Find Out Talent',
+         1000,
+         ' Find Out Yourself',
+         1000
+       ]}
+       wrapper="span"
+       speed={30}
+       style={{  display: 'inline-block', color: '#eab308' , filter: "drop-shadow(0px 10px 10px rgb(0,0,0))" }}
+       repeat={Infinity}
+       className="font-effect-3d"
+     />
+       
+      
+     </h1>
 
     <p className=" text-xl text-grey-200">
     We have a large library of courses taught by highly skilled and qualified faculties at a very affordable cost.

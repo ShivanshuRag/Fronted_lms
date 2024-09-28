@@ -56,16 +56,20 @@ function Login(){
 
  const handleGoogleLogin = async (authResult) => {
   console.log(" ye hai auth result",authResult);
-try {
+     try {
 
-if(authResult["code"] ){
-  console.log(authResult.code);
-    const response = await googleAuth(authResult.code); 
-       
-    console.log('result------', response.data);
-    console.log(response.data);
-    // props.setUser(response.data.data.user);
+      if(authResult["code"] ){
+       console.log(authResult.code);
+        const response = await dispatch(googleAuth(authResult.code));
+    // const response = await googleAuth(authResult.code); 
     
+        
+   
+    console.log('result------', response);
+
+    
+    // props.setUser(response.data.data.user);  
+    naviagte("/")  
 }else {
   console.log( "authResult",authResult);
   throw new Error(authResult);
@@ -78,8 +82,7 @@ console.error('Error while requesting Google code:', error);
 
 }
 
-// const HandleGooglResult = handleGoogleLogin();
-// console.log(HandleGooglResult);
+
 
 const googleLogin = useGoogleLogin({
 

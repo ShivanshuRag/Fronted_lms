@@ -28,17 +28,16 @@ import Profile from './Pages/User/Profile.jsx'
 import VerifyOTP from './Pages/VerifyOTP.jsx'
 function App() { 
   
-   const GoogleAuthWrapper =()=>{
-     return(
-       <GoogleOAuthProvider clientId ='230994313138-p6jvbl6g829rl2tgm971oeamnkj5lgls.apps.googleusercontent.com'>
-           <Login/>
-       </GoogleOAuthProvider>
-     )
-   }
+   
+      
+    
   return (
    <>
    {/* <h1
    className="text-3xl font-bold underline"> Hello  I am Shivanshu SinghRag</h1> */}
+   <GoogleOAuthProvider clientId ='230994313138-p6jvbl6g829rl2tgm971oeamnkj5lgls.apps.googleusercontent.com'>
+          
+          
     <Routes>
     <Route path="/" element={<HomePage />} ></Route>
     <Route path="/about" element={<AboutUs/>} ></Route>
@@ -51,7 +50,7 @@ function App() {
     <Route path="/course/description" element={<CourseDescription/>}></Route>
     <Route path="/contact" element={<Contact/>}></Route> 
     <Route path="/denied" element={<Denied/>}></Route>
-    <Route path="/login" element={<GoogleAuthWrapper/>}></Route>
+    <Route path="/login" element={<Login/>}></Route>
 
 
     <Route element={<RequireAuth allowedRoles={["Admin"]}/>}>
@@ -73,7 +72,7 @@ function App() {
    
     <Route path="*" element={<NotFound/>}></Route>
     </Routes>
-    
+    </GoogleOAuthProvider>
    </>
   )
 }
