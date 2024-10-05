@@ -1,9 +1,13 @@
 import { useEffect,useState  } from "react";
+import ReactPlayer from 'react-player';
 import { useDispatch , useSelector } from "react-redux";
 import { useLocation,useNavigate  } from "react-router-dom";
 
+// import { FaPlay, FaPause, FaVolumeUp, FaExpand, FaCog } from 'react-icons/fa'
 import HomeLayout from "../../Layouts/HomeLayout.jsx";
 import { deleteCourseLecture,getCourseLectures  } from "../../Redux/Slices/LectureSlice.js";
+
+
 
 function Displaylectures(){
 
@@ -12,10 +16,19 @@ function Displaylectures(){
     const {state} = useLocation();
     const {lectures} = useSelector((state) => state.lecture);
     const {role} = useSelector((state) => state.auth );
+
+   
       
     const [currentVideo , setCurrentVideo] = useState(0);
+    
 
+   
+    
+      
 
+      
+      
+      
     async function onLectureDelete (courseId , lectureId){
 
       await  dispatch(deleteCourseLecture({courseId : courseId , lectureId : lectureId }))
@@ -24,9 +37,12 @@ function Displaylectures(){
 
     useEffect(()=>{
         if(!state) navigate("/courses");
-        dispatch(getCourseLectures(state._id));
+        dispatch(getCourseLectures(state?._id));
 
-    }, []);
+    }, [ dispatch , state]);
+
+
+  
 
     return (
         <HomeLayout>
@@ -38,18 +54,25 @@ function Displaylectures(){
             {(lectures && lectures.length > 0 ) ?  
                 (<div className="flex justify-center gap-10 w-full">
                 {/* left section for playing videos and displaying course details to admin */}
-               <div className="space-y-5 w-[28rem] p-2 rounded-lg shadow-[0_0_10px_black]">
-                    <video 
-                        src={lectures && lectures[currentVideo]?.lecture?.secure_url}
-                        className="object-fill rounded-tl-lg rounded-tr-lg w-full"   
-                        controls
+                <div className="space-y-5 w-[28rem] p-2 rounded-lg shadow-[0_0_10px_black]">               
+                <div className="relative bg-black rounded-lg overflow-hidden shadow-lg">
+                    <ReactPlayer
+                        // url={lectures && lectures[currentVideo]?.lecture?.secure_url }
+                      url='https://www.youtube.com/watch?v=jNgP6d9HraI'
+                        className="object-fill rounded-tl-lg rounded-tr-lg w-full"
+                    
                         disablePictureInPicture
-                        
                         controlsList="nodownload"
+                        playbackRate={1} // Default playback speed
+                        controls 
+                        width="100%"
+                        height="100%"
+                        pip= {true}
+                    
                         
-                    >
-                    </video>    
-                    <div >
+                    />
+                       </div>
+                         <div >
                         <h1>
                             <span className="text-yellow-500"> Title: {" "}
                             </span>
@@ -103,7 +126,7 @@ function Displaylectures(){
             )}
         </div>
     </HomeLayout>
-
+        
     )
 }
 

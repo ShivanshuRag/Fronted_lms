@@ -16,20 +16,20 @@ function CourseCard({ data }) {
           alt="course thumbnail"
         />
         <div className="p-5 space-y-2 text-white relative z-10">
-          <h2 className="text-2xl font-bold text-primary line-clamp-2 group-hover:text-secondary">
+          <h2 className="text-2xl font-bold text-amber-500 line-clamp-2 group-hover:text-secondary">
             {data?.title}
           </h2>
           <p className="line-clamp-2 text-gray-300">{data?.description}</p>
           <div className="text-sm font-semibold">
-            <p className="text-primary font-bold">Category:</p> 
+            <p className=" text-amber-500 font-bold">Category:</p> 
             <p>{data?.category}</p>
           </div>
           <div className="text-sm font-semibold">
-            <p className="text-primary font-bold">Total lectures:</p> 
+            <p className=" text-amber-500 font-bold">Total lectures:</p> 
             <p>{data?.numberOfLecture}</p>
           </div>
           <div className="text-sm font-semibold">
-            <p className="text-primary font-bold">Instructor:</p>
+            <p className=" text-amber-500 font-bold">Instructor:</p>
             <p>{data.createdBy}</p>
           </div>
         </div>

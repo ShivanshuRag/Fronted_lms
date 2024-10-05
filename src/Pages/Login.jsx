@@ -94,9 +94,9 @@ onError : handleGoogleLogin,
 
 return(
 <HomeLayout>
-  <div className="flex overflow-x-auto items-center justify-center h-[100vh]">
-     <form noValidate onSubmit={onLogin} className="flex flex-col justify-center gap-3 rounded-lg p-4 text-white w-96 shadow-[0_0_10px_black]" >
-     <h1 className="text-center text-2xl font-bold mb-5 ">Login Page</h1>
+  <div className="flex mb-3 overflow-x-auto items-center justify-center h-[100vh]  ">
+     <form noValidate onSubmit={onLogin} className="flex flex-col justify-center gap-3  p-4 text-white w-96 shadow-[0_0_10px_black]     rounded-xl overflow-hidden cursor-pointer transition-transform transform hover:scale-100 hover:shadow-white hover:shadow-lg" >
+     <h1 className="text-center text-2xl font-bold mb-5 text-yellow-500 ">Login Page</h1>
 
         <div className="flex flex-col gap-1">
         <label className="label">

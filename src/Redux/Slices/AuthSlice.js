@@ -9,8 +9,10 @@ import axiosInstance from "../../Helpers/axiosIntances.js";
 const initialState = { 
     isLoggedIn: localStorage.getItem('isLoggedIn') || false,
     role: localStorage.getItem('role') || "",
-    data: localStorage.getItem('token') != undefined ? JSON.parse(localStorage.getItem('token')) : {}
+    data: localStorage.getItem('token')!= undefined ? JSON.parse(localStorage.getItem('token')) : {}
+
     // != undefined ? JSON.parse(localStorage.getItem('token')) : {}
+    
 }
 export const createAccount = createAsyncThunk("/auth/signup", async (data) => {
     try {
