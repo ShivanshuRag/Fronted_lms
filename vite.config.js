@@ -5,7 +5,7 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   server: {
     proxy:{
-      '/api/v1' : 'https://persona-bknd2-lvw1gc3lm-shivanshurags-projects.vercel.app'
+      '/api/v1' : 'https://persona-bknd2.vercel.app'
     }
   },
 
