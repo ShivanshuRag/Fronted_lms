@@ -1,7 +1,7 @@
 
 import axios from "axios";
 
-const BASE_URL = "https://persona-bknd3.vercel.app";
+const BASE_URL = "https://persona-bknd3.vercel.app/api/v1";
 
 
 const axiosInstance  = axios.create();
