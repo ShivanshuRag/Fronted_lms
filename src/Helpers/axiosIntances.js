@@ -1,7 +1,7 @@
 
 import axios from "axios";
 
-const BASE_URL = "https://persona-bknd3.vercel.app/api/v1";
+const BASE_URL = " http://localhost:5001/api/v1";
 
 
 
