@@ -13,20 +13,18 @@ import { getUserData } from "../Redux/Slices/AuthSlice.js";
 function HomePage(){
  const navigate = useNavigate();
  const dispatch = useDispatch();
- const userData = useSelector((state)=> state?.auth?.data)
+ const userData = useSelector((state)=> state?.auth.data)
  
   
-const islogged = useSelector((state)=> state?.auth?.isLoggedIn)
+const isLoggedIn = useSelector((state)=> state?.auth.isLoggedIn)
  
  
  
-   useEffect(() => {
-  // Fetch user data on component mount
-    if(islogged ){ 
-    dispatch(getUserData()) ;
-    
-    }
-}, [dispatch , islogged]) //  // eski vajah se otp user fetch kar pa raha hai
+useEffect(() => {
+  if (isLoggedIn) {
+    dispatch(getUserData());
+  }
+}, [isLoggedIn, dispatch]); //  // eski vajah se otp user fetch kar pa raha hai
 
  
    function clickAvatar (){
@@ -36,16 +34,18 @@ const islogged = useSelector((state)=> state?.auth?.isLoggedIn)
  }
  return(
   <>
-  { islogged === true  ? (
-    <div className=" flex flex-col h-10"> 
-    <div className=" absolute top-20  right-20 "
-    
-    > 
-       
-       <img src={userData?.avatar?.secure_url} className="  w-10 h-10 rounded-full border-2 border-gray-400"  onClick={clickAvatar}/>
-    </div>
-    </div>
-  ):( " " ) }
+  {isLoggedIn && (
+        <div className="flex flex-col h-10">
+          <div className="absolute top-20 right-20">
+            <img
+              src={userData?.avatar?.secure_url}
+              alt="User Avatar"
+              className="w-10 h-10 rounded-full border-2 border-gray-400"
+              onClick={clickAvatar}
+            />
+          </div>
+        </div>
+      )}
     
     
     
