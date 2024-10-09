@@ -108,7 +108,7 @@ function Signup() {
     }
 
     const handleGoogleLogin = async (authResult) => {
-        console.log(" ye hai auth result",authResult);
+        // console.log(" ye hai auth result",authResult);
            try {
       
             if(authResult["code"] ){
@@ -116,13 +116,13 @@ function Signup() {
               const response = await dispatch(googleAuth(authResult.code));
           // const response = await googleAuth(authResult.code); 
           
-              
-         
+          if(response?.payload?.success)
+            navigate("/") 
           console.log('result------', response);
       
           
           // props.setUser(response.data.data.user);  
-          navigate("/") 
+          
       }else {
         console.log( "authResult",authResult);
         throw new Error(authResult);
