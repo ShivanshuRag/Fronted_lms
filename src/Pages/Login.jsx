@@ -38,7 +38,7 @@ function Login(){
   event.preventDefault();
 
   if(!loginData.email || !loginData.password){
-    toast.error("please fill all details")
+    return toast.error("please fill all details")
   }
    
   const response = await dispatch(login(loginData));
@@ -55,30 +55,31 @@ function Login(){
  }
 
  const handleGoogleLogin = async (authResult) => {
-  console.log(" ye hai auth result",authResult);
+  // console.log(" ye hai auth result",authResult);
      try {
-
+    
       if(authResult["code"] ){
        console.log(authResult.code);
         const response = await dispatch(googleAuth(authResult.code));
     // const response = await googleAuth(authResult.code); 
     
-        
-   
+    if(response?.payload?.success)
+      naviagte("/") 
     console.log('result------', response);
 
-    
+   
     // props.setUser(response.data.data.user);  
-    naviagte("/")  
+    
+    
 }else {
   console.log( "authResult",authResult);
   throw new Error(authResult);
 }
-  
+
 } catch (error) {
 console.error('Error while requesting Google code:', error);
 // Display a user-friendly error message
-}
+} 
 
 }
 
@@ -90,6 +91,8 @@ flow: "auth-code",
 
 onSuccess:handleGoogleLogin ,
 onError : handleGoogleLogin,
+
+
 });
 
 return(
