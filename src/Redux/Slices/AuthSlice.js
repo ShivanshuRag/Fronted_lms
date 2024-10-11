@@ -9,7 +9,7 @@ import axiosInstance from "../../Helpers/axiosIntances.js";
 const initialState = { 
     isLoggedIn: localStorage.getItem('isLoggedIn') || false,
     role: localStorage.getItem('role') || "",
-    data: localStorage.getItem('token')!= undefined ? JSON.parse(localStorage.getItem('token')) : {}
+    data: localStorage.getItem('token') != undefined ? JSON.parse(localStorage.getItem('token')) : {}
 
     // != undefined ? JSON.parse(localStorage.getItem('token')) : {}
     
@@ -32,7 +32,7 @@ export const createAccount = createAsyncThunk("/auth/signup", async (data) => {
 
 export const login = createAsyncThunk("/auth/login", async (data) => {
     try {
-        const res = axiosInstance.post("user/login", data);
+        const res =  axiosInstance.post("user/login", data);
         toast.promise(res, {
             loading: "Wait! authentication in progress...",
             success: (data) => {
