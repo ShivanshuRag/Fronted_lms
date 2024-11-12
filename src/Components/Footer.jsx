@@ -1,4 +1,4 @@
-import { BsDiscord, BsFacebook, BsLinkedin, BsTwitter} from 'react-icons/bs';
+import { BsDiscord,  BsLinkedin, BsTwitter} from 'react-icons/bs';
 
 function Footer(){
   
@@ -12,10 +12,7 @@ function Footer(){
             Copyright {Year} | All rights reserved
          </section>
         <section className='flex items-center justify-center gap-5 text-2xl text-white'>
-            <a className='hover:text-yellow-500 transition-all ease-in-out duration-300'>
-                <BsFacebook/>
-
-            </a>
+            
 
             <a
             //  href="https://discord.com/channels/@me"
