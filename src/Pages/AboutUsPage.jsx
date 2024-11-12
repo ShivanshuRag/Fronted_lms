@@ -49,6 +49,7 @@ function AboutUs(){
                 key={celebrity.slideNumber} 
                 
                 totalSlides={celebrities.length}
+                
           
             /> 
            
