@@ -53,7 +53,7 @@ function HomeLayout({ children }) {
         <div className="drawer-side w-0 ">
             <label htmlFor="my-drawer" className="drawer-overlay">
             </label>
-            <ul className="menu p-4 w-48 h-[100%] sm:w-80 bg-slate-950 text-base-300  relative">
+            <ul className="menu p-4 w-48 h-[100%] sm:w-80 bg-slate-950  text-white-100  relative">
                 <li className="w-fit absolute right-2 z-50">
                     <button onClick={hideDrawer}>
                         <AiFillCloseCircle size={24} />
