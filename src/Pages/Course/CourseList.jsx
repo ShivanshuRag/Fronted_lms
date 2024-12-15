@@ -21,7 +21,7 @@ function CourseList(){
     
         loadCourses();
 
-    } ,[] );
+    }  );
 
 
     return(
@@ -30,7 +30,8 @@ function CourseList(){
          <h1 className="text-center text-3xl font-semibold mb-5">
          Explore the courses made by
          <span className="font-bold  text-yellow-500">
-                        Industry experts
+                       {" "} Industry experts
+                       
             </span>
 
          </h1>
