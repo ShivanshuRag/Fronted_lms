@@ -1,7 +1,7 @@
 
 import axios from "axios";
 
-const BASE_URL = "https://backend-lms-aoxs.onrender.com/api/v1";
+const BASE_URL = "https://backend-production-dc7e.up.railway.app/api/v1";
 
 
 
