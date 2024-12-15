@@ -57,8 +57,8 @@ function Displaylectures(){
                 <div className="space-y-5 w-[28rem] p-2 rounded-lg shadow-[0_0_10px_black]">               
                 <div className="relative bg-black rounded-lg overflow-hidden shadow-lg">
                     <ReactPlayer
-                        // url={lectures && lectures[currentVideo]?.lecture?.secure_url }
-                      url='https://www.youtube.com/watch?v=jNgP6d9HraI'
+                        url={lectures && lectures[currentVideo]?.lecture?.secure_url }
+                    //   url='https://youtu.be/Rwe5Aw3KPHY?si=GVT-03FxLnmK7JE8'
                         className="object-fill rounded-tl-lg rounded-tr-lg w-full"
                     
                         disablePictureInPicture
@@ -76,13 +76,18 @@ function Displaylectures(){
                         <h1>
                             <span className="text-yellow-500"> Title: {" "}
                             </span>
+                            <span className="text-white">
                             {lectures && lectures[currentVideo]?.title}
+                        </span>
                         </h1>
                         <p >
                             <span className="text-yellow-500 line-clamp-4">
                                 Description: {" "}
                             </span>
+                            <span className="text-white">
                             {lectures && lectures[currentVideo]?.description}
+                        </span>
+                            
                         </p>
                     </div>
                </div>
@@ -92,7 +97,7 @@ function Displaylectures(){
                     <li className="font-semibold text-xl text-yellow-500 flex items-center justify-between">
                         <p>Lectures list</p>
                         {role === "Admin" && (
-                            <button onClick={() => navigate("/course/addlecture", {state: {...state}})} className="btn-primary px-2 py-1 rounded-md font-semibold text-sm">
+                            <button onClick={() => navigate("/course/addlecture", {state: {...state}})} className="btn btn-primary px-2 py-1 rounded-md font-semibold text-sm">
                                 Add new lecture
                             </button>
                         )}
@@ -101,11 +106,12 @@ function Displaylectures(){
                         lectures.map((lecture, idx) => {
                             return (
                                 <li className="space-y-2" key={lecture._id} >
-                                    <p className="cursor-pointer" onClick={() => setCurrentVideo(idx)}>
-                                        <span>
+                                    <p className="cursor-pointer " onClick={() => setCurrentVideo(idx)}>
+                                        <span className="text-yellow-500">
                                             {" "} Lecture {idx + 1} : {" "}
                                         </span>
-                                        {lecture?.title}
+                                        <span className="text-white">{lecture?.title}</span>
+                                        
                                     </p>
                                     {role === "Admin" && (
                                         <button onClick={() => onLectureDelete(state?._id, lecture?._id)} className=" btn btn-accent px-2 py-1 rounded-md font-semibold text-sm">
