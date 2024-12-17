@@ -98,15 +98,10 @@ export const changePassword = createAsyncThunk("/user/changepassword" , async (d
       }
 })
 
-export const getUserData = createAsyncThunk("/user/details", async () => {
+export const getUserData = createAsyncThunk("/auth/details", async () => {
     try {
         const res = axiosInstance.get("user/me");
-         toast.promise(res , {
-            loading: "loading data",
-            success: "successful userData",
-            error: " failed userData",
-         })
-         
+          
         return (await res).data;
          
     } catch(error) {
