@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { toast } from "react-hot-toast";
+import  toast  from "react-hot-toast";
 
 import axiosInstance from "../../Helpers/axiosIntances.js";
 
@@ -9,14 +9,15 @@ import axiosInstance from "../../Helpers/axiosIntances.js";
 const initialState = { 
     isLoggedIn: localStorage.getItem('isLoggedIn') || false,
     role: localStorage.getItem('role') || "",
-    data: localStorage.getItem('token') != undefined ? JSON.parse(localStorage.getItem('token')) : {}
+    data: JSON.parse(localStorage.getItem("data")) || {}
+    // data: localStorage.getItem('token') != undefined ? JSON.parse(localStorage.getItem('token')) : {}
 
     // != undefined ? JSON.parse(localStorage.getItem('token')) : {}
     
 }
 export const createAccount = createAsyncThunk("/auth/signup", async (data) => {
     try {
-        const res = axiosInstance.post("user/register", data);
+        const res =  axiosInstance.post("user/register", data);
         toast.promise(res, {
             loading: "Wait! creating your account",
             success: (data) => {
@@ -24,6 +25,7 @@ export const createAccount = createAsyncThunk("/auth/signup", async (data) => {
             },
             error: "Failed to create account"
         });
+        //  return res.data
         return (await res).data;
     } catch(error) {
         toast.error(error?.res?.data?.message);
@@ -41,7 +43,7 @@ export const login = createAsyncThunk("/auth/login", async (data) => {
             
             error: "Failed to log in"
         });
-       
+        //   return res.data
         return (await res).data;
     } catch(error) {
         toast.error(error?.response?.data?.message);
@@ -50,7 +52,7 @@ export const login = createAsyncThunk("/auth/login", async (data) => {
 
 export const logout = createAsyncThunk("/auth/logout", async () => {
     try {
-        const res = axiosInstance.post("user/logout");
+        const res =  axiosInstance.post("user/logout");
         toast.promise(res, {
             loading: "Wait! logout in progress...",
             success: (data) => {
@@ -58,6 +60,7 @@ export const logout = createAsyncThunk("/auth/logout", async () => {
             },
             error: "Failed to log out"
         });
+        // return res.data
         return (await res).data;
     } catch(error) {
         toast.error(error?.res?.data?.message);
@@ -66,7 +69,7 @@ export const logout = createAsyncThunk("/auth/logout", async () => {
 
 export const updateProfile = createAsyncThunk("/user/update/profile", async (data) => {
     try {
-        const res = axiosInstance.put(`user/update/${data[0]}`, data[1]);
+        const res =   axiosInstance.put(`user/update/${data[0]}`, data[1]);
         toast.promise(res, {
             loading: "Wait! profile update in progress...",
             success: (data) => {
@@ -75,6 +78,7 @@ export const updateProfile = createAsyncThunk("/user/update/profile", async (dat
             error: "Failed to update profile"
         });
         return (await res).data;
+        // return res.data
     } catch(error) {
         toast.error(error?.res?.data?.message);
     }
@@ -93,6 +97,7 @@ export const changePassword = createAsyncThunk("/user/changepassword" , async (d
         })
 
         return (await res).data
+        // return res.data
       } catch (error) {
          toast.error(error?.res?.data?.message)
       }
@@ -103,6 +108,7 @@ export const getUserData = createAsyncThunk("/auth/details", async () => {
         const res = axiosInstance.get("user/me");
           
         return (await res).data;
+        // return res.data
          
     } catch(error) {
         toast.error(error?.message);
@@ -123,7 +129,7 @@ export const loginPhone = createAsyncThunk("/auth/number" , async(data)=>{
          })
           return  (await response).data;
     } catch (error) {
-         toast.error(error.message);
+         toast.error(error.response.message);
     }
 })
 
