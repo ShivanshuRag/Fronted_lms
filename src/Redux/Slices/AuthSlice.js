@@ -106,12 +106,12 @@ export const changePassword = createAsyncThunk("/user/changepassword" , async (d
 export const getUserData = createAsyncThunk("/auth/details", async () => {
     try {
         const Token = localStorage.getItem('token');
-        const res = axiosInstance.get("user/me" ,{
+        const res = await axiosInstance.get("user/me" ,{
             headers: { Authorization: `Bearer ${Token}` },
         });
           
-        return (await res).data;
-        // return res.data
+        // return (await res).data;
+        return res.data
          
     } catch(error) {
         toast.error(error?.message);
@@ -184,27 +184,27 @@ const authSlice = createSlice({
     extraReducers: (builder) => {
         
     builder.addCase(login.fulfilled, (state, action) => {
-            localStorage.setItem('token', JSON.stringify(action?.payload?.user));
+            localStorage.setItem('token', JSON.stringify(action?.payload?.user?.data));
             localStorage.setItem('isLoggedIn', true);
             localStorage.setItem('role', action?.payload?.user?.role);
             state.isLoggedIn = true;
-            state.data = action?.payload?.user;
+            state.data = action?.payload?.user?.data;
             state.role = action?.payload?.user?.role
         }).addCase(loginPhone.fulfilled , (state , action)=>{
 
-            localStorage.setItem('token' , JSON.stringify(action?.payload?.user));
+            localStorage.setItem('token' , JSON.stringify(action?.payload?.user?.data));
             localStorage.setItem('isLoggedIn' , true);
             localStorage.setItem('role', action?.payload?.user?.role );
             state.isLoggedIn = true;
-            state.data = action?.payload?.user;
+            state.data = action?.payload?.user?.data;
             state.role = action?.payload?.user?.role;
         }).addCase(verifyPhone.fulfilled , (state , action)=>{
 
-            localStorage.setItem('token' , JSON.stringify(action?.payload?.user));
+            localStorage.setItem('token' , JSON.stringify(action?.payload?.user?.data));
             localStorage.setItem('isLoggedIn' , true);
             localStorage.setItem('role', action?.payload?.user?.role  );
             state.isLoggedIn = true;
-            state.data = action?.payload?.user;
+            state.data = action?.payload?.user?.data;
             state.role = action?.payload?.user?.role
         }).addCase(logout.fulfilled, (state) => {
             localStorage.clear();
@@ -213,19 +213,19 @@ const authSlice = createSlice({
             state.role = "";
         }).addCase(getUserData.fulfilled, (state, action) => {
             if(!action?.payload?.user) return;
-            localStorage.setItem('token', JSON.stringify(action?.payload?.user));
+            localStorage.setItem('token', JSON.stringify(action?.payload?.user?.data));
             localStorage.setItem('isLoggedIn', true);
             localStorage.setItem('role', action?.payload?.user?.role);
             state.isLoggedIn = true;
-            state.data = action?.payload?.user;
+            state.data = action?.payload?.user?.data;
             state.role = action?.payload?.user?.role
         })
         .addCase(googleAuth.fulfilled, (state, action) => {
-            localStorage.setItem('token', JSON.stringify(action?.payload?.user));
+            localStorage.setItem('token', JSON.stringify(action?.payload?.user?.data));
             localStorage.setItem('isLoggedIn', true);
             localStorage.setItem('role', action?.payload?.user?.role);
             state.isLoggedIn = true;
-            state.data = action?.payload?.user;
+            state.data = action?.payload?.user?.data;
             state.role = action?.payload?.user?.role
         })    
        
