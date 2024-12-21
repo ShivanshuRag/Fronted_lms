@@ -105,10 +105,9 @@ export const changePassword = createAsyncThunk("/user/changepassword" , async (d
 
 export const getUserData = createAsyncThunk("/auth/details", async () => {
     try {
-        const Token = localStorage.getItem('token');
-        const res = await axiosInstance.get("user/me" ,{
-            headers: { Authorization: `Bearer ${Token}` },
-        });
+        // const Token = localStorage.getItem('token');
+        const res = await axiosInstance.get("user/me" );
+      
           
         // return (await res).data;
         return res.data
