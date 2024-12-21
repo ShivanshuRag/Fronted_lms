@@ -20,9 +20,5 @@ export default defineConfig({
 
   plugins: [react()],
 
-  // build: {
-  //   outDir: 'dist', // Output directory for production build
-  //   minify: 'terser', // Minify JavaScript for production
-  //   sourcemap: false, // Disable sourcemaps in production
-  // },
+ 
 })
