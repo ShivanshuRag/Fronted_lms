@@ -184,7 +184,7 @@ const authSlice = createSlice({
     extraReducers: (builder) => {
         
     builder.addCase(login.fulfilled, (state, action) => {
-            localStorage.setItem('token', JSON.stringify(action?.payload?.user?.data));
+            localStorage.setItem('token', JSON.stringify(action?.payload?.user));
             localStorage.setItem('isLoggedIn', true);
             localStorage.setItem('role', action?.payload?.user?.role);
             state.isLoggedIn = true;
@@ -192,7 +192,7 @@ const authSlice = createSlice({
             state.role = action?.payload?.user?.role
         }).addCase(loginPhone.fulfilled , (state , action)=>{
 
-            localStorage.setItem('token' , JSON.stringify(action?.payload?.user?.data));
+            localStorage.setItem('token' , JSON.stringify(action?.payload?.user));
             localStorage.setItem('isLoggedIn' , true);
             localStorage.setItem('role', action?.payload?.user?.role );
             state.isLoggedIn = true;
@@ -200,7 +200,7 @@ const authSlice = createSlice({
             state.role = action?.payload?.user?.role;
         }).addCase(verifyPhone.fulfilled , (state , action)=>{
 
-            localStorage.setItem('token' , JSON.stringify(action?.payload?.user?.data));
+            localStorage.setItem('token' , JSON.stringify(action?.payload?.user));
             localStorage.setItem('isLoggedIn' , true);
             localStorage.setItem('role', action?.payload?.user?.role  );
             state.isLoggedIn = true;
@@ -213,7 +213,7 @@ const authSlice = createSlice({
             state.role = "";
         }).addCase(getUserData.fulfilled, (state, action) => {
             if(!action?.payload?.user) return;
-            localStorage.setItem('token', JSON.stringify(action?.payload?.user?.data));
+            localStorage.setItem('token', JSON.stringify(action?.payload?.user));
             localStorage.setItem('isLoggedIn', true);
             localStorage.setItem('role', action?.payload?.user?.role);
             state.isLoggedIn = true;
@@ -221,7 +221,7 @@ const authSlice = createSlice({
             state.role = action?.payload?.user?.role
         })
         .addCase(googleAuth.fulfilled, (state, action) => {
-            localStorage.setItem('token', JSON.stringify(action?.payload?.user?.data));
+            localStorage.setItem('token', JSON.stringify(action?.payload?.user));
             localStorage.setItem('isLoggedIn', true);
             localStorage.setItem('role', action?.payload?.user?.role);
             state.isLoggedIn = true;
