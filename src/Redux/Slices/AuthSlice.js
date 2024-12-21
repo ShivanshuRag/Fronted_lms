@@ -9,7 +9,7 @@ import axiosInstance from "../../Helpers/axiosIntances.js";
 const initialState = { 
     isLoggedIn: localStorage.getItem('isLoggedIn') || false,
     role: localStorage.getItem('role') || "",
-    data: JSON.parse(localStorage.getItem("data")) || {}
+    data: JSON.parse(localStorage.getItem('token')) || {}
     // data: localStorage.getItem('token') != undefined ? JSON.parse(localStorage.getItem('token')) : {}
 
     // != undefined ? JSON.parse(localStorage.getItem('token')) : {}
@@ -105,7 +105,10 @@ export const changePassword = createAsyncThunk("/user/changepassword" , async (d
 
 export const getUserData = createAsyncThunk("/auth/details", async () => {
     try {
-        const res = axiosInstance.get("user/me");
+        const Token = localStorage.getItem('token');
+        const res = axiosInstance.get("user/me" ,{
+            headers: { Authorization: `Bearer ${Token}` },
+        });
           
         return (await res).data;
         // return res.data
