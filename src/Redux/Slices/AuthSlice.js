@@ -188,7 +188,7 @@ const authSlice = createSlice({
             localStorage.setItem('isLoggedIn', true);
             localStorage.setItem('role', action?.payload?.user?.role);
             state.isLoggedIn = true;
-            state.data = action?.payload?.user?.data;
+            state.data = action?.payload?.user;
             state.role = action?.payload?.user?.role
         }).addCase(loginPhone.fulfilled , (state , action)=>{
 
@@ -196,7 +196,7 @@ const authSlice = createSlice({
             localStorage.setItem('isLoggedIn' , true);
             localStorage.setItem('role', action?.payload?.user?.role );
             state.isLoggedIn = true;
-            state.data = action?.payload?.user?.data;
+            state.data = action?.payload?.user;
             state.role = action?.payload?.user?.role;
         }).addCase(verifyPhone.fulfilled , (state , action)=>{
 
@@ -204,7 +204,7 @@ const authSlice = createSlice({
             localStorage.setItem('isLoggedIn' , true);
             localStorage.setItem('role', action?.payload?.user?.role  );
             state.isLoggedIn = true;
-            state.data = action?.payload?.user?.data;
+            state.data = action?.payload?.user;
             state.role = action?.payload?.user?.role
         }).addCase(logout.fulfilled, (state) => {
             localStorage.clear();
@@ -217,7 +217,7 @@ const authSlice = createSlice({
             localStorage.setItem('isLoggedIn', true);
             localStorage.setItem('role', action?.payload?.user?.role);
             state.isLoggedIn = true;
-            state.data = action?.payload?.user?.data;
+            state.data = action?.payload?.user;
             state.role = action?.payload?.user?.role
         })
         .addCase(googleAuth.fulfilled, (state, action) => {
@@ -225,7 +225,7 @@ const authSlice = createSlice({
             localStorage.setItem('isLoggedIn', true);
             localStorage.setItem('role', action?.payload?.user?.role);
             state.isLoggedIn = true;
-            state.data = action?.payload?.user?.data;
+            state.data = action?.payload?.user;
             state.role = action?.payload?.user?.role
         })    
        
