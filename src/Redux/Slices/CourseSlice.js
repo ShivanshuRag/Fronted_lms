@@ -1,7 +1,7 @@
 
 
 import { createAsyncThunk , createSlice } from "@reduxjs/toolkit";
- import{ toast } from "react-hot-toast";
+ import {toast } from "react-hot-toast";
 
  import axiosInstance from "../../Helpers/axiosIntances.js";
 
@@ -11,11 +11,13 @@ import { createAsyncThunk , createSlice } from "@reduxjs/toolkit";
 
  export const getAllCourses = createAsyncThunk("/course/get", async () => {
   try {
-      const response = axiosInstance.get("/courses");
+      const response =  axiosInstance.get("/courses");
       toast.promise(response, {
           loading: "loading course data...",
           success: "Courses loaded successfully",
           error: "Failed to get the courses",
+          
+            
       });
 
       return (await response).data.courses;
@@ -54,9 +56,11 @@ import { createAsyncThunk , createSlice } from "@reduxjs/toolkit";
    try {
 
     const response = axiosInstance.delete(`courses/${id}`);
-     toast.promise(response , {
+      toast.promise(response , {
       loading : "deleting course...",
-      success : " course deleted successfully",
+      success : ( )=> toast.success(" course deleted successfully"),
+          
+      
       error : " failed to delete course"
 
      })
