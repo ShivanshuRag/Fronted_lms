@@ -39,7 +39,7 @@ function Displaylectures(){
         if(!state) navigate("/courses");
         dispatch(getCourseLectures(state?._id));
 
-    } );
+    },[] );
 
 
   
