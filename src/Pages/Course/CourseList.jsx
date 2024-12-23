@@ -21,7 +21,7 @@ function CourseList(){
     
         loadCourses();
 
-    }  );
+    } ,[] );
 
 
     return(
