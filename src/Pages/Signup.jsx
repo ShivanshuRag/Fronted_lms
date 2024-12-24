@@ -56,7 +56,7 @@ function Signup() {
 
     async function createNewAccount(event) {
         event.preventDefault();
-        if(!signupData.email || !signupData.password || !signupData.fullName || !signupData.phoneNumber ||!signupData.avatar) {
+        if(!(signupData.email || signupData.password || signupData.fullName  || signupData.avatar)) {
             toast.error("Please fill all the details");
             return;
         }
@@ -86,7 +86,7 @@ function Signup() {
         const formData = new FormData();
         formData.append("fullName", signupData.fullName);
         formData.append("email", signupData.email);
-        formData.append("phoneNumber", signupData.phoneNumber);
+        // formData.append("phoneNumber", signupData.phoneNumber);
         formData.append("password", signupData.password);
         formData.append("avatar", signupData.avatar);
 
@@ -153,8 +153,10 @@ function Signup() {
                         {previewImage ? (
                             <img className="w-24 h-24 rounded-full m-auto" src={previewImage} />
                         ) : (
-                            <BsPersonCircle className='w-24 h-24 rounded-full m-auto bg-yellow-500' />
+                            <BsPersonCircle className='w-24 h-24 rounded-full m-auto bg-yellow-300  ' />
                         )}
+                        
+                        
                     </label>
                     <input 
                         onChange={getImage}
