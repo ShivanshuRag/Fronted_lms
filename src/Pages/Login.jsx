@@ -40,6 +40,7 @@ function Login(){
   if(!loginData.email || !loginData.password){
     return toast.error("please fill all details")
   }
+  
    
   const response = await dispatch(login(loginData));
   
