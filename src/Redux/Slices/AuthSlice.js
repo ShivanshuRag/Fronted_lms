@@ -227,7 +227,16 @@ const authSlice = createSlice({
             state.data = action?.payload?.user;
             state.role = action?.payload?.user?.role
         })    
+        .addCase(createAccount.fulfilled, (state, action) => {
+            localStorage.setItem('token', JSON.stringify(action?.payload?.user));
+            localStorage.setItem('isLoggedIn', true);
+            localStorage.setItem('role', action?.payload?.user?.role);
+            state.isLoggedIn = true;
+            state.data = action?.payload?.user;
+            state.role = action?.payload?.user?.role
+        })
        
+    
        
     }
 });
