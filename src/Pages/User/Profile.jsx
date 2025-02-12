@@ -35,7 +35,7 @@ const userData = useSelector((state)=> state?.auth?.data);
 return(
  <HomeLayout>
     <div className="min-h-[90vh] flex items-center justify-center">
-      <div className="my-10 flex flex-col gap-4 rounded-lg p-4 text-white w-96 shadow-[0_0_10px_black]">
+      <div className="my-10 flex flex-col gap-4  bg-slate-950 rounded-lg p-4 text-white w-96  overflow-hidden cursor-pointer shadow-lg transition-transform transform hover:scale-100 hover:shadow-yellow-200 hover:shadow-lg">
        <img 
        src={userData?.avatar?.secure_url} 
        alt="" 

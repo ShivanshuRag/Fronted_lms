@@ -25,7 +25,7 @@ function Contact(){
    async function onFormSubmit(e){
     e.preventDefault();
 
-    if(!userInput.name || !userInput.email|| !userInput.message){
+    if(!(userInput.name || userInput.email|| userInput.message)){
     toast.error(" All fields are required")
       return;
     }
@@ -69,14 +69,14 @@ function Contact(){
       <form 
         noValidate
        onSubmit={onFormSubmit}
-       className="flex flex-col items-center justify-center gap-2 p-5  text-white shadow-[0_0_10px_black] w-[22rem]  rounded-xl overflow-hidden cursor-pointer transition-transform transform hover:scale-100 hover:shadow-white hover:shadow-lg"
+       className="flex flex-col items-center justify-center gap-2 p-5  text-white shadow-[0_0_10px_black] w-[22rem]  rounded-xl overflow-hidden cursor-pointer transition-transform transform hover:scale-100 hover:shadow-yellow-500 hover:shadow-lg"
       >
-      <h1 className="text-3xl font-semibold">
+      <h1 className="text-3xl font-semibold  text-yellow-500">
         Contact Form
       </h1>
 
       <div className="flex flex-col w-full gap-1">
-        <label htmlFor="name" className="text-xl font-semibold">
+        <label htmlFor="name" className="text-xl font-semibold  text-yellow-400">
            Name
         </label>
         <input
@@ -92,7 +92,7 @@ function Contact(){
       </div>
 
       <div className="flex flex-col w-full gap-1">
-        <label htmlFor="email" className="text-xl font-semibold"> Email</label>
+        <label htmlFor="email" className="text-xl font-semibold  text-yellow-400"> Email</label>
         <input
          type="email"
          className="bg-transparent border px-2 py-1 rounded-sm"
@@ -106,7 +106,7 @@ function Contact(){
       </div>
 
       <div className="flex flex-col w-full gap-1">
-        <label htmlFor="message" className="text-xl font-semibold">Message</label>
+        <label htmlFor="message" className="text-xl font-semibold  text-yellow-400">Message</label>
          <textarea 
          className="bg-transparent border px-2 py-1 rounded-sm resize-none h-40"
          name="message" 

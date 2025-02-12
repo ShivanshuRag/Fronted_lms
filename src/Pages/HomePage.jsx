@@ -1,4 +1,5 @@
 
+// eslint-disable-next-line simple-import-sort/imports
 import { useEffect } from "react";
 // import { toast} from "react-hot-toast"
 import { useDispatch} from "react-redux"
@@ -10,6 +11,7 @@ import { TypeAnimation } from 'react-type-animation'
 import StudyImage_1 from "../Assets/Images/StudyImage_1.jpg"
 import HomeLayout from "../Layouts/HomeLayout.jsx";
 import { getUserData } from "../Redux/Slices/AuthSlice.js";
+import { Example } from "../Components/Example.jsx";
 function HomePage(){
  const navigate = useNavigate();
  const dispatch = useDispatch();
@@ -53,7 +55,7 @@ useEffect(() => {
        
      
  <HomeLayout> 
-  
+ 
    <div className="pt-10 text-white flex items-center justify-center gap-10 mx-16 h-[90vh]">
     
    <div className="w-1/2 space-y-6">
@@ -107,9 +109,12 @@ useEffect(() => {
    >
     <img src={StudyImage_1} alt="imge" className="rounded-xl" />
    </div>
-
+   
    </div>
+    <div className=" py-3 ">
 
+    <Example />
+    </div>
  </HomeLayout>
  </>
  )

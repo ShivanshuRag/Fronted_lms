@@ -15,24 +15,24 @@ function Footer(){
             
 
             <a
-            //  href="https://discord.com/channels/@me"
-            //    target="_blank" rel="noopener noreferrer"
+             href="https://discord.com/channels/@me"
+               target="_blank" rel="noopener noreferrer"
             
             className='hover:text-yellow-500 transition-all ease-in-out duration-300'>
                 <BsDiscord/>
             </a>
 
             <a 
-            //   href="https://www.linkedin.com/in/shivanshu-singh-646b91232"
-            //    target="_blank" rel="noopener noreferrer"
+              href="https://www.linkedin.com/in/shivanshu-singh-646b91232"
+               target="_blank" rel="noopener noreferrer"
             className='hover:text-yellow-500 transition-all ease-in-out duration-300'>
                 
                 <BsLinkedin/>
             </a>
 
             <a 
-            //   href="https://x.com/ShivanshuRag"
-            //    target="_blank" rel="noopener noreferrer"
+              href="https://x.com/ShivanshuRag"
+               target="_blank" rel="noopener noreferrer"
             className='hover:text-yellow-500 transition-all ease-in-out duration-300'>
                 <BsTwitter/>
             </a>

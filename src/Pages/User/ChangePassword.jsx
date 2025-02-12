@@ -76,12 +76,12 @@ function ChangePassword() {
        <form
         noValidate 
         onSubmit={onFormSubmit}
-        className=" flex flex-col justify-center gap-5 rounded-lg p-4 text-white w-80 min-h-[26rem] shadow-[0_0_10px_black]"
-        >
-       <h1 className=" text-center text-2xl font-semibold">Change Password</h1>
+        className=" flex flex-col justify-center gap-5 rounded-lg p-4 text-white w-80 min-h-[26rem]  overflow-hidden cursor-pointer shadow-lg transition-transform transform hover:scale-100 hover:shadow-yellow-200 hover:shadow-lg">
+        
+       <h1 className=" text-center text-2xl font-semibold text-yellow-500">Change Password</h1>
         
        <div className=" flex flex-col gap-1">
-            <label htmlFor="oldPassword" className="text-lg font-semibold ">Old Password</label>
+            <label htmlFor="oldPassword" className="text-lg font-semibold  text-yellow-500 ">Old Password</label>
              <input
                required
                type={password.isPasswordVisible ? "text" : "password"}
@@ -97,7 +97,7 @@ function ChangePassword() {
               </div>
            
               <div className=" flex flex-col gap-1">
-            <label htmlFor="newPassword" className="text-lg font-semibold ">New Password</label>
+            <label htmlFor="newPassword" className="text-lg font-semibold  text-yellow-500">New Password</label>
              <input
                required
                type={password.isPasswordVisible ? "text" : "password"}
@@ -113,7 +113,7 @@ function ChangePassword() {
               </div>
 
               <div className=" flex flex-col gap-1">
-            <label htmlFor="confirmPassword" className="text-lg font-semibold ">Confirm Password</label>
+            <label htmlFor="confirmPassword" className="text-lg font-semibold  text-yellow-500 ">Confirm Password</label>
              <input
                required
                type={password.isPasswordVisible ? "text" : "password"}
@@ -131,7 +131,7 @@ function ChangePassword() {
               
               <button type="button" 
               onClick={handleTogglePasswordVisibility}
-              className="text-lg font-semibold"
+              className="text-lg font-semibold  text-accent"
               //  className=" bg-yellow-600 hover:bg-yellow-500 transition-all ease-in-out duration-300 rounded-sm py-2 text-lg cursor-pointer"
               >
               {password.isPasswordVisible ? "Hide Password" : "Show Password"}

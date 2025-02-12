@@ -75,13 +75,14 @@ function EditProfile(){
 
     return(
       <HomeLayout>
-       <div  className=" flex items-center justify-center h-[100vh]">
+
+       <div  className=" flex items-center justify-center h-[100vh] ">
         <form 
         noValidate
          onSubmit={onFormSubmit}
-        className=" flex flex-col justify-center gap-5 rounded-lg p-4 text-white w-80 min-h-[26rem] shadow-[0_0_10px_black]" >
+        className=" flex flex-col justify-center gap-5 rounded-lg p-4 text-white w-80 min-h-[26rem]  overflow-hidden cursor-pointer shadow-lg transition-transform transform hover:scale-100 hover:shadow-yellow-200 hover:shadow-lg" >
         
-         <h1 className=" text-center text-2xl font-semibold">Edit Profile</h1>
+         <h1 className=" text-center text-2xl font-semibold  text-yellow-500">Edit Profile</h1>
            <label className="cursor-pointer" htmlFor="image_uploads">
 
              {data.previewImage ? (
@@ -91,7 +92,7 @@ function EditProfile(){
                 className="w-28 h-28 rounded-full m-auto" />
 
              ):(
-                <BsPersonCircle className="w-28 h-28 rounded-full m-auto"/>
+                <BsPersonCircle className="w-28 h-28 bg-yellow-300 rounded-full m-auto"/>
              )
             
             }
@@ -107,7 +108,7 @@ function EditProfile(){
 
            />
            <div className=" flex flex-col gap-1">
-            <label htmlFor="fullName" className="text-lg font-semibold ">Full Name</label>
+            <label htmlFor="fullName" className="text-lg font-semibold  text-yellow-500 ">Full Name</label>
              <input
                required
                type="text"
